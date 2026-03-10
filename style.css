@@ -483,9 +483,28 @@ img {
     color: white;
 }
 
+/* RTL: align "למידע נוסף" – block on right, arrow points left toward button */
+[dir="rtl"] .hero-more-info {
+    right: calc(50% + 110px);
+    left: auto;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .more-info-arrow {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .hero-more-info:hover .more-info-arrow {
+    transform: scaleX(-1) translateX(-4px);
+}
+
 [dir="ltr"] .hero-more-info {
     left: auto;
-    right: calc(50% + 110px);
+    right: calc(50% + 130px);
+}
+
+[dir="ltr"] .more-info-arrow {
+    transform: scaleX(-1);
 }
 
 .more-info-text {
@@ -507,7 +526,7 @@ img {
 }
 
 [dir="ltr"] .hero-more-info:hover .more-info-arrow {
-    transform: translateX(-4px);
+    transform: scaleX(-1) translateX(-4px);
 }
 
 /* Hero Floating Badges */
@@ -924,7 +943,7 @@ img {
 .team-label {
     position: absolute;
     top: 0;
-    right: -30px;
+    right: -75px;
     left: auto;
     font-family: var(--font-handwritten);
     font-size: 35px;
@@ -1663,6 +1682,16 @@ img {
         direction: rtl;
     }
 
+    [dir="ltr"] .about-grid,
+    [dir="ltr"] .about-grid > * {
+        direction: ltr;
+    }
+
+    [dir="ltr"] .team-label {
+        right: auto;
+        left: -15px;
+    }
+
     .projects {
         padding: 0;
     }
@@ -1761,6 +1790,53 @@ img {
 }
 
 /* ============================================
+   RTL – uniform Hebrew font (Heebo)
+   ============================================ */
+[dir="rtl"] .btn-primary,
+[dir="rtl"] .btn-submit,
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-subtitle,
+[dir="rtl"] .logo,
+[dir="rtl"] .logo span,
+[dir="rtl"] .nav-links a,
+[dir="rtl"] .lang-toggle,
+[dir="rtl"] .hero-title,
+[dir="rtl"] .hero-subtitle,
+[dir="rtl"] .hero-desc,
+[dir="rtl"] .hero-more-info,
+[dir="rtl"] .hero-badge,
+[dir="rtl"] .stat-number,
+[dir="rtl"] .stat-label,
+[dir="rtl"] .logo-brand,
+[dir="rtl"] .service-card h3,
+[dir="rtl"] .service-card p,
+[dir="rtl"] .service-link,
+[dir="rtl"] .about-text h2,
+[dir="rtl"] .about-text h2 span,
+[dir="rtl"] .about-text > p,
+[dir="rtl"] .feature-text h4,
+[dir="rtl"] .feature-text p,
+[dir="rtl"] .testimonial-card > p,
+[dir="rtl"] .testimonial-author strong,
+[dir="rtl"] .testimonial-author span,
+[dir="rtl"] .contact-card-wrapper h2,
+[dir="rtl"] .contact-card-wrapper h2 span,
+[dir="rtl"] .contact-subtitle,
+[dir="rtl"] .contact-form-inline .form-group input,
+[dir="rtl"] .contact-form-inline .form-group label,
+[dir="rtl"] .footer-simple .logo,
+[dir="rtl"] .footer-copyright,
+[dir="rtl"] .footer-disclaimer {
+    font-family: var(--font-he);
+}
+
+/* Team label: same font in Hebrew as in English (handwritten) */
+[dir="rtl"] .team-label,
+[dir="rtl"] .team-label .team-label-text {
+    font-family: var(--font-handwritten);
+}
+
+/* ============================================
    LTR Support
    ============================================ */
 [dir="ltr"] .nav-links {
@@ -1769,4 +1845,44 @@ img {
 
 [dir="ltr"] .nav-links.active {
     transform: translateX(0);
+}
+
+[dir="ltr"] .nav-links a::after {
+    right: auto;
+    left: 0;
+}
+
+/* LTR: about section - direction so punctuation (?.!) is at end of sentences */
+[dir="ltr"] .about-grid > * {
+    direction: ltr;
+}
+
+/* LTR text alignment */
+[dir="ltr"] .service-card p {
+    text-align: left;
+}
+
+[dir="ltr"] .about-text h2 {
+    text-align: left;
+}
+
+[dir="ltr"] .about-text > p {
+    text-align: left;
+}
+
+[dir="ltr"] .feature-text h4 {
+    text-align: left;
+}
+
+[dir="ltr"] .feature-text p {
+    text-align: left;
+}
+
+[dir="ltr"] .testimonial-card > p {
+    text-align: left;
+}
+
+[dir="ltr"] .testimonial-quote {
+    right: auto;
+    left: 28px;
 }

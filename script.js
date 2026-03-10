@@ -2,6 +2,12 @@
    PRO ALGORITHM - Landing Page JavaScript
    ============================================ */
 
+/* Contact form: API URL and key (must match server CONTACT_FROM_LOADING_PAGE_KEY) */
+const CONTACT_API = {
+    url: process.env.CONTACT_API_URL,
+    key: process.env.CONTACT_FROM_LOADING_PAGE_KEY
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initHamburger();
@@ -244,29 +250,55 @@ function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const btn = form.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
+        const originalText = btn.innerHTML;
 
         btn.textContent = document.documentElement.lang === 'en' ? 'Sending...' : 'שולח...';
         btn.disabled = true;
         btn.style.opacity = '0.7';
 
-        // Simulate form submission
-        setTimeout(() => {
+        const payload = {
+            name: form.querySelector('#name').value.trim(),
+            phone: form.querySelector('#phone').value.trim(),
+            email: form.querySelector('#email').value.trim()
+        };
+
+        try {
+            const res = await fetch(CONTACT_API.url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-contact-key': CONTACT_API.key
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok) {
+                const msg = data?.message || (document.documentElement.lang === 'en' ? 'Something went wrong' : 'משהו השתבש');
+                throw new Error(msg);
+            }
+
             btn.textContent = document.documentElement.lang === 'en' ? 'Sent!' : 'נשלח!';
             btn.style.background = 'linear-gradient(135deg, #00b894, #00d4aa)';
 
             setTimeout(() => {
-                btn.textContent = originalText;
+                btn.innerHTML = originalText;
                 btn.disabled = false;
                 btn.style.opacity = '1';
                 btn.style.background = '';
                 form.reset();
             }, 2000);
-        }, 1500);
+        } catch (err) {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            alert(err.message);
+        }
     });
 }
 
