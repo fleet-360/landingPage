@@ -4,8 +4,8 @@
 
 /* Contact form: API URL and key (must match server CONTACT_FROM_LOADING_PAGE_KEY) */
 const CONTACT_API = {
-    url: process.env.CONTACT_API_URL,
-    key: process.env.CONTACT_FROM_LOADING_PAGE_KEY
+    url: 'https://fleet360-server-1069352823739.me-west1.run.app/contact',
+    key: 'YXdlc29tZUB0b3JvLmNvLmls'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
