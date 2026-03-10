@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Algorithm - פיתוח תוכנות ואפליקציות מתקדמות</title>
+    <meta name="description" content="Pro Algorithm - בית תוכנה ישראלי מוביל המתמחה בפיתוח אפליקציות ופיתוח תוכנה בהתאמה אישית לעסקים. מומחיות ב-AI, אוטומציה ומערכות SAAS מתקדמות.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@700;900&family=Rubik:wght@800&family=Just+Me+Again+Down+Here&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-content">
+            <a href="#hero" class="logo">Pro <span>Algorithm</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" data-he="יתרונות" data-en="Benefits">יתרונות</a></li>
+                <li><a href="#services" data-he="איך זה עובד" data-en="How It Works">איך זה עובד</a></li>
+                <li><a href="#contact" data-he="צור קשר" data-en="Contact">צור קשר</a></li>
+                <li><a href="#testimonials" data-he="המלצות" data-en="Testimonials">המלצות</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="lang-toggle" id="langToggle" title="Switch Language">
+                    <span class="lang-he">EN</span>
+                    <span class="lang-en" style="display:none;">HE</span>
+                </button>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61579382173682" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/pro.algorithm" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/pro-algorithm" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <a href="#contact" class="btn btn-primary nav-cta" data-he="צרו קשר" data-en="Contact Us">צרו קשר</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="תפריט">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="images/hero/cover.svg" alt="" class="hero-cover" aria-hidden="true">
+            <div class="hero-circuit"></div>
+            <div class="hero-particles" id="heroParticles"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-text-area">
+                <h1 class="hero-title" data-he="PRO ALGORITHM" data-en="PRO ALGORITHM">PRO ALGORITHM</h1>
+                <p class="hero-subtitle" data-he="פיתוח תוכנות ואפליקציות מתקדמות" data-en="Advanced Software & Application Development">פיתוח תוכנות ואפליקציות מתקדמות</p>
+                <p class="hero-desc" data-he="בית תוכנה ישראלי מוביל המתמחה בפיתוח אפליקציות ופיתוח תוכנה בהתאמה אישית לעסקים. מומחיות ב-AI, אוטומציה ומערכות SAAS מתקדמות." data-en="A leading Israeli software house specializing in custom app and software development for businesses. Expertise in AI, automation and advanced SaaS systems.">בית תוכנה ישראלי מוביל המתמחה בפיתוח אפליקציות ופיתוח תוכנה בהתאמה אישית לעסקים. מומחיות ב-AI, אוטומציה ומערכות SAAS מתקדמות.</p>
+                <div class="hero-buttons">
+                    <div class="hero-more-info">
+                        <img src="images/hero/forMoreInfo.svg" alt="" class="more-info-text" aria-hidden="true">
+                        <img src="images/hero/arrow.svg" alt="" class="more-info-arrow" aria-hidden="true">
+                    </div>
+                                        <a href="#contact" class="btn btn-primary btn-lg" data-he="קבל ייעוץ חינם" data-en="Get Free Consultation">קבל ייעוץ חינם</a>
+
+                </div>
+            </div>
+            <!-- Floating Badges -->
+            <div class="hero-badges">
+                <div class="hero-badge badge-1">
+                    <span class="badge-x" aria-hidden="true">&#x2715;</span>
+                    <span data-he="צוות ישראלי 100%" data-en="100% Israeli Team">צוות ישראלי 100%</span>
+                    <img src="images/hero/shield.svg" alt="" class="badge-icon" aria-hidden="true">
+                </div>
+                <div class="hero-badge badge-2">
+                    <span class="badge-x" aria-hidden="true">&#x2715;</span>
+                    <span data-he="בית תוכנה בוטיק" data-en="Boutique Software House">בית תוכנה בוטיק</span>
+                    <img src="images/hero/people.svg" alt="" class="badge-icon" aria-hidden="true">
+                </div>
+                <div class="hero-badge badge-3">
+                    <span class="badge-x" aria-hidden="true">&#x2715;</span>
+                    <span data-he="מומחי AI ואלגוריתמים" data-en="AI & Algorithm Experts">מומחי AI ואלגוריתמים</span>
+                    <img src="images/hero/medal.svg" alt="" class="badge-icon" aria-hidden="true">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics" id="statistics">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-target="15000" data-prefix="+">+0</span>
+                <span class="stat-label" data-he="עסקאות בחודש" data-en="Transactions / Month">עסקאות בחודש</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="8" data-prefix="+">+0</span>
+                <span class="stat-label" data-he="שנות ניסיון" data-en="Years of Experience">שנות ניסיון</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="94" data-suffix="%">0%</span>
+                <span class="stat-label" data-he="אחוז הצלחה" data-en="Success Rate">אחוז הצלחה</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="500" data-prefix="+">+0</span>
+                <span class="stat-label" data-he="לקוחות פעילים" data-en="Active Clients">לקוחות פעילים</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logos Section -->
+    <section class="logos-section">
+        <div class="container">
+            <div class="logos-track">
+                <div class="logos-slide">
+                    <div class="logo-item"><img src="images/logo-tau.svg" alt="אוניברסיטת תל-אביב" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-mydesk.svg" alt="myDesk" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-sheba.svg" alt="שיבא" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-hot.svg" alt="HOT" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-finance.svg" alt="משרד האוצר" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-netflix.svg" alt="Netflix" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-mifal-hapayis.svg" alt="מפעל הפיס" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-zim.svg" alt="ZIM" class="logo-img"></div>
+                </div>
+                <div class="logos-slide" aria-hidden="true">
+                    <div class="logo-item"><img src="images/logo-tau.svg" alt="אוניברסיטת תל-אביב" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-mydesk.svg" alt="myDesk" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-sheba.svg" alt="שיבא" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-hot.svg" alt="HOT" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-finance.svg" alt="משרד האוצר" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-netflix.svg" alt="Netflix" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-mifal-hapayis.svg" alt="מפעל הפיס" class="logo-img"></div>
+                    <div class="logo-item"><img src="images/logo-zim.svg" alt="ZIM" class="logo-img"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (3 Plates) -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title" data-he="מה מחכה לך ב-<span>Pro Algorithm</span>" data-en="What Awaits You at <span>Pro Algorithm</span>">מה מחכה לך ב-<span>Pro Algorithm</span></h2>
+            <p class="section-subtitle" data-he="אנחנו מספקים מגוון רחב של שירותי פיתוח מתקדמים" data-en="We provide a wide range of advanced development services">אנחנו מספקים מגוון רחב של שירותי פיתוח מתקדמים</p>
+            <div class="services-grid three-cards">
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon-3d">
+                        <img src="images/icon-podcast.svg" alt="פודקאסטים" class="service-icon-img">
+                    </div>
+                    <h3 data-he="פודקאסטים" data-en="Podcasts">פודקאסטים</h3>
+                    <p data-he="ידע, סרטונים וטיפים שיעזרו לכם להתמקצע בפיתוח וטכנולוגיה" data-en="Knowledge, videos and tips to help you specialize in development and technology">ידע, סרטונים וטיפים שיעזרו לכם להתמקצע בפיתוח וטכנולוגיה</p>
+                    <a href="#contact" class="service-link" data-he="למידע נוסף →" data-en="Learn more →">למידע נוסף →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon-3d">
+                        <img src="images/icon-app-dev.svg" alt="פיתוח אפליקציות" class="service-icon-img">
+                    </div>
+                    <h3 data-he="פיתוח אפליקציות" data-en="App Development">פיתוח אפליקציות</h3>
+                    <p data-he="חברת תוכנה המתמחה באפליקציות מותאמות אישית, מערכות SaaS ופתרונות AI לעסקים" data-en="Software company specializing in custom apps, SaaS systems and AI solutions for businesses">חברת תוכנה המתמחה באפליקציות מותאמות אישית, מערכות SaaS ופתרונות AI לעסקים</p>
+                    <a href="#contact" class="service-link" data-he="למידע נוסף →" data-en="Learn more →">למידע נוסף →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon-3d">
+                        <img src="images/icon-software.svg" alt="פיתוח תוכנה ומערכות" class="service-icon-img">
+                    </div>
+                    <h3 data-he="פיתוח תוכנה ומערכות" data-en="Software & Systems Development">פיתוח תוכנה ומערכות</h3>
+                    <p data-he="בית תוכנה ישראלי לפיתוח אפליקציות ותוכנה מותאמת אישית, כולל SaaS, E-commerce, מובייל ופתרונות AI עם אוטומציה מתקדמת" data-en="Israeli software house for custom app and software development, including SaaS, E-commerce, mobile and AI solutions with advanced automation">בית תוכנה ישראלי לפיתוח אפליקציות ותוכנה מותאמת אישית, כולל SaaS, E-commerce, מובייל ופתרונות AI עם אוטומציה מתקדמת</p>
+                    <a href="#contact" class="service-link" data-he="למידע נוסף →" data-en="Learn more →">למידע נוסף →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="team-collage" data-aos="fade-up">
+                <div class="team-photos-grid">
+                    <!-- Top row: 3 landscape photos -->
+                    <div class="team-photo-item landscape"><img src="images/team/team-10.jpg" alt="Team member"></div>
+                    <div class="team-photo-item landscape glow"><img src="images/team/team-9.jpg" alt="Team member"></div>
+                    <div class="team-photo-item landscape"><img src="images/team/team-8.jpg" alt="Team member"></div>
+                    <!-- Middle: short-tall alternating -->
+                    <div class="team-photo-item short"><img src="images/team/team-13.jpg" alt="Team member"></div>
+                    <div class="team-photo-item tall"><img src="images/team/team-1.jpg" alt="Team member"></div>
+                    <div class="team-photo-item short"><img src="images/team/team-4.jpg" alt="Team member"></div>
+                    <div class="team-photo-item tall glow"><img src="images/team/team-12.jpg" alt="Team member"></div>
+                    <div class="team-photo-item short"><img src="images/team/team-14.jpg" alt="Team member"></div>
+                    <!-- Bottom: tall-short alternating -->
+                    <div class="team-photo-item tall"><img src="images/team/team-5.jpg" alt="Team member"></div>
+                    <div class="team-photo-item short glow"><img src="images/team/team-2.jpg" alt="Team member"></div>
+                    <div class="team-photo-item tall"><img src="images/team/team-3.png" alt="Team member"></div>
+                    <div class="team-photo-item short"><img src="images/team/team-6.jpg" alt="Team member"></div>
+                    <div class="team-photo-item tall"><img src="images/team/team-11.jpg" alt="Team member"></div>
+                </div>
+                <div class="team-label">
+                    <span class="team-label-text">A Team Driven<br>By Excellence</span>
+                    <span class="team-label-arrow">↙</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="about-sections" id="about">
+        <div class="about-block dark-block">
+            <div class="container about-grid">
+                <div class="about-image" data-aos="fade-left">
+                    <div class="person-image">
+                        <img src="images/about/man.png" alt="מומחה Pro Algorithm" class="person-photo">
+                    </div>
+                </div>
+                <div class="about-text" data-aos="fade-right">
+                    <h2 data-he="למה לבחור <span>בנו?</span>" data-en="Why Choose <span>Us?</span>">למה לבחור <span>בנו?</span></h2>
+                    <p data-he="הטכנולוגיה המתקדמת שלנו משלבת אוטומציה ובינה מלאכותית כדי לתת לך יתרון בשוק, לייעל תהליכים ולשפר את הביצועים העסקיים." data-en="Our advanced technology combines automation and AI to give you a market advantage, streamline processes and improve business performance.">הטכנולוגיה המתקדמת שלנו משלבת אוטומציה ובינה מלאכותית כדי לתת לך יתרון בשוק, לייעל תהליכים ולשפר את הביצועים העסקיים.</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-text">
+                                <h4 data-he="אוטומציה מלאה" data-en="Full Automation">אוטומציה מלאה</h4>
+                                <p data-he="האלגוריתמים שלנו עובדים 24/7, מנתחים נתונים ומבצעים עסקאות בזמן אמת ללא התערבות ידנית." data-en="Our algorithms work 24/7, analyzing data and executing transactions in real-time without manual intervention.">האלגוריתמים שלנו עובדים 24/7, מנתחים נתונים ומבצעים עסקאות בזמן אמת ללא התערבות ידנית.</p>
+                            </div>
+                            <div class="feature-icon-box">
+                                <img src="images/about/icon-robot.svg" alt="" class="feature-icon-img">
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">
+                                <h4 data-he="ניהול סיכונים" data-en="Risk Management">ניהול סיכונים</h4>
+                                <p data-he="מנגנוני הגנה מתקדמים שמגבילים הפסדים ומגנים על ההשקעה שלך בכל תנאי שוק" data-en="Advanced protection mechanisms that limit losses and protect your investment in all market conditions">מנגנוני הגנה מתקדמים שמגבילים הפסדים ומגנים על ההשקעה שלך בכל תנאי שוק</p>
+                            </div>
+                            <div class="feature-icon-box">
+                                <img src="images/about/icon-security.svg" alt="" class="feature-icon-img">
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">
+                                <h4 data-he="תמיכה מקצועית" data-en="Professional Support">תמיכה מקצועית</h4>
+                                <p data-he="צוות מומחים זמין עבורך לכל שאלה, עם ליווי אישי וייעוץ מקצועי לאורך כל הדרך" data-en="Expert team available for any question, with personal guidance and professional consulting throughout">צוות מומחים זמין עבורך לכל שאלה, עם ליווי אישי וייעוץ מקצועי לאורך כל הדרך</p>
+                            </div>
+                            <div class="feature-icon-box">
+                                <img src="images/about/icon-headphones.svg" alt="" class="feature-icon-img">
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">
+                                <h4 data-he="אסטרטגיות מוכחות" data-en="Proven Strategies">אסטרטגיות מוכחות</h4>
+                                <p data-he="גישה לאסטרטגיות מסחר שנבדקו ואומתו על פני שנים עם תוצאות עקביות" data-en="Access to tested and verified trading strategies with consistent results over the years">גישה לאסטרטגיות מסחר שנבדקו ואומתו על פני שנים עם תוצאות עקביות</p>
+                            </div>
+                            <div class="feature-icon-box">
+                                <img src="images/about/icon-circles.svg" alt="" class="feature-icon-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients / Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-he="מה הלקוחות שלנו <span>אומרים</span>" data-en="What Our Clients <span>Say</span>">מה הלקוחות שלנו <span>אומרים</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-quote"><img src="images/testimonials/quote-icon.svg" alt="" class="quote-icon-img"></div>
+                    <p data-he="&ldquo;הגענו לפרו אלגוריתם עם קבצי Revit מסובכים שאף אחד לא הצליח לפענח. תוך יומיים הם בנו לנו מערכת שמזהה שגיאות תכנון אוטומטית &ndash; חסכנו כמעט חודשיים של עבודה ידנית.&rdquo;" data-en="&ldquo;We came to Pro Algorithm with complex Revit files no one could decode. Within two days they built us a system that automatically detects planning errors &ndash; saving us almost two months of manual work.&rdquo;">&ldquo;הגענו לפרו אלגוריתם עם קבצי Revit מסובכים שאף אחד לא הצליח לפענח. תוך יומיים הם בנו לנו מערכת שמזהה שגיאות תכנון אוטומטית &ndash; חסכנו כמעט חודשיים של עבודה ידנית.&rdquo;</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar purple"><img src="images/testimonials/avatar-purple.png" alt="" class="avatar-img"></div>
+                        <div>
+                            <strong data-he="אורן לוי" data-en="Oren Levi">אורן לוי</strong>
+                            <span data-he="סמנכ&quot;ל טכנולוגיות, BuildTech" data-en="VP Technology, BuildTech">סמנכ"ל טכנולוגיות, BuildTech</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-quote"><img src="images/testimonials/quote-icon.svg" alt="" class="quote-icon-img"></div>
+                    <p data-he="&ldquo;עברנו מ-3 מערכות שונות למערכת אחת שפרו אלגוריתם פיתחו לנו. הצוות שלהם ישב איתנו, הבין את התהליכים ובנה משהו שפשוט עובד. אנחנו כבר שנה וחצי על המערכת בלי תקלה אחת.&rdquo;" data-en="&ldquo;We migrated from 3 different systems to one unified platform Pro Algorithm built for us. Their team sat with us, understood our processes and built something that just works. We've been running on it for a year and a half without a single issue.&rdquo;">&ldquo;עברנו מ-3 מערכות שונות למערכת אחת שפרו אלגוריתם פיתחו לנו. הצוות שלהם ישב איתנו, הבין את התהליכים ובנה משהו שפשוט עובד. אנחנו כבר שנה וחצי על המערכת בלי תקלה אחת.&rdquo;</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar purple"><img src="images/testimonials/avatar-purple.png" alt="" class="avatar-img"></div>
+                        <div>
+                            <strong data-he="מיכל אברהם" data-en="Michal Avraham">מיכל אברהם</strong>
+                            <span data-he="מנכ&quot;לית, LogiNext" data-en="CEO, LogiNext">מנכ"לית, LogiNext</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-quote"><img src="images/testimonials/quote-icon.svg" alt="" class="quote-icon-img"></div>
+                    <p data-he="&ldquo;חיפשנו חברה שתבין גם את הצד העסקי וגם את הצד הטכנולוגי. פרו אלגוריתם פיתחו לנו אפליקציית SaaS מותאמת עם AI שמנתח נתוני לקוחות בזמן אמת. ההכנסות שלנו עלו ב-40% תוך רבעון.&rdquo;" data-en="&ldquo;We were looking for a company that understands both business and technology. Pro Algorithm developed a custom SaaS app with AI that analyzes customer data in real-time. Our revenue increased by 40% within a quarter.&rdquo;">&ldquo;חיפשנו חברה שתבין גם את הצד העסקי וגם את הצד הטכנולוגי. פרו אלגוריתם פיתחו לנו אפליקציית SaaS מותאמת עם AI שמנתח נתוני לקוחות בזמן אמת. ההכנסות שלנו עלו ב-40% תוך רבעון.&rdquo;</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar purple"><img src="images/testimonials/avatar-purple.png" alt="" class="avatar-img"></div>
+                        <div>
+                            <strong data-he="יונתן שפירא" data-en="Yonatan Shapira">יונתן שפירא</strong>
+                            <span data-he="מייסד, DataPulse" data-en="Founder, DataPulse">מייסד, DataPulse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects / Mockups -->
+    <section class="projects" id="projects">
+        <div class="mockups-fullwidth">
+            <img src="images/mockups/projects-collage.png" alt="הפרויקטים שלנו" class="mockups-img">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-card-wrapper" data-aos="fade-up">
+                <h2 data-he="מוכן <span>להתחיל?</span>" data-en="Ready to <span>Start?</span>">מוכן <span>להתחיל?</span></h2>
+                <p class="contact-subtitle" data-he="השאר פרטים ונחזור אליך תוך 24 שעות" data-en="Leave your details and we'll get back to you within 24 hours">השאר פרטים ונחזור אליך תוך 24 שעות</p>
+                <form class="contact-form-inline" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" required placeholder=" ">
+                        <label for="name" data-he="שם מלא" data-en="Full Name">שם מלא</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" required placeholder=" ">
+                        <label for="phone" data-he="טלפון" data-en="Phone">טלפון</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required placeholder=" ">
+                        <label for="email" data-he="אימייל" data-en="Email">אימייל</label>
+                    </div>
+                    <button type="submit" class="btn btn-submit btn-lg btn-full" data-he="<i class='fas fa-paper-plane'></i> שלח פרטים" data-en="<i class='fas fa-paper-plane'></i> Send Details"><i class="fas fa-paper-plane"></i> שלח פרטים</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-simple">
+                <a href="#hero" class="logo">Pro <span>Algorithm</span></a>
+                <p class="footer-copyright" data-he="&copy; 2026 Pro Algorithm. כל הזכויות שמורות." data-en="&copy; 2025 Pro Algorithm. All rights reserved.">&copy; 2025 Pro Algorithm. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="חזרה למעלה">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
