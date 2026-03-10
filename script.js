@@ -4,8 +4,8 @@
 
 /* Contact form: API URL and key (must match server CONTACT_FROM_LOADING_PAGE_KEY) */
 const CONTACT_API = {
-    // url: 'https://fleet360-server-1069352823739.me-west1.run.app/contact',
-    url: 'http://localhost:8181/contact',
+    url: 'https://fleet360-server-1069352823739.me-west1.run.app/contact',
+    //url: 'http://localhost:8181/contact',
     key: 'YXdlc29tZUB0b3JvLmNvLmls'
 };
 
