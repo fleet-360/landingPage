@@ -20,9 +20,43 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initContactForm();
     initActiveNav();
+    initHashScroll();
+    initBlogAndSites();
 });
 
-/* ---------- Navbar Scroll Effect ---------- */
+/* ---------- Custom AOS (Animate On Scroll) ---------- */
+function checkAOS() {
+    const windowHeight = window.innerHeight;
+
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        if (el.classList.contains('aos-animate')) return;
+
+        const rect = el.getBoundingClientRect();
+        const delay = parseInt(el.getAttribute('data-aos-delay')) || 0;
+
+        if (rect.top < windowHeight * 1.15 || rect.bottom < windowHeight) {
+            setTimeout(() => {
+                el.classList.add('aos-animate');
+            }, delay);
+        }
+    });
+}
+
+function refreshAOS() {
+    checkAOS();
+    setTimeout(checkAOS, 50);
+    setTimeout(checkAOS, 200);
+}
+
+function initAOS() {
+    window.addEventListener('scroll', checkAOS, { passive: true });
+    window.addEventListener('resize', checkAOS, { passive: true });
+    checkAOS();
+    setTimeout(checkAOS, 100);
+    setTimeout(checkAOS, 300);
+    setTimeout(checkAOS, 600);
+}
+
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     let lastScroll = 0;
@@ -122,38 +156,6 @@ function initCounters() {
     animateCounters(); // Check on load
 }
 
-/* ---------- Custom AOS (Animate On Scroll) ---------- */
-function initAOS() {
-    const elements = document.querySelectorAll('[data-aos]');
-
-    function checkAOS() {
-        const windowHeight = window.innerHeight;
-
-        elements.forEach(el => {
-            if (el.classList.contains('aos-animate')) return; // Already animated
-
-            const rect = el.getBoundingClientRect();
-            const delay = parseInt(el.getAttribute('data-aos-delay')) || 0;
-
-            // Trigger when element top is within viewport (with 15% buffer below)
-            // OR element has already been scrolled past (top is above viewport)
-            if (rect.top < windowHeight * 1.15 || rect.bottom < windowHeight) {
-                setTimeout(() => {
-                    el.classList.add('aos-animate');
-                }, delay);
-            }
-        });
-    }
-
-    window.addEventListener('scroll', checkAOS, { passive: true });
-    window.addEventListener('resize', checkAOS, { passive: true });
-    // Check multiple times on load for reliability
-    checkAOS();
-    setTimeout(checkAOS, 100);
-    setTimeout(checkAOS, 300);
-    setTimeout(checkAOS, 600);
-}
-
 /* ---------- Hero Particles ---------- */
 function initParticles() {
     const container = document.getElementById('heroParticles');
@@ -199,10 +201,13 @@ function initBackToTop() {
 }
 
 /* ---------- Language Toggle ---------- */
+let currentLang = 'he';
+let blogContentData = null;
+
 function initLangToggle() {
     const btn = document.getElementById('langToggle');
     const html = document.documentElement;
-    let currentLang = 'he';
+    currentLang = html.lang || 'he';
 
     btn.addEventListener('click', () => {
         currentLang = currentLang === 'he' ? 'en' : 'he';
@@ -228,6 +233,11 @@ function initLangToggle() {
                 el.innerHTML = text;
             }
         });
+
+        if (blogContentData) {
+            renderBlogCards(blogContentData.posts);
+            renderContactSites(blogContentData.sites);
+        }
     });
 }
 
@@ -314,6 +324,7 @@ function initActiveNav() {
         'services': '#services',
         'team': '#services',
         'testimonials': '#testimonials',
+        'blog': '#blog',
         'projects': '#projects',
         'contact': '#contact'
     };
@@ -344,4 +355,98 @@ function initActiveNav() {
 
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav();
+}
+
+/* ---------- Hash Scroll on Load (SEO redirects) ---------- */
+function initHashScroll() {
+    if (!window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    if (!target) return;
+    setTimeout(() => {
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }, 100);
+}
+
+/* ---------- Blog Cards & Contact Sites ---------- */
+function initBlogAndSites() {
+    fetch('content/blogs.json')
+        .then(res => res.json())
+        .then(data => {
+            blogContentData = data;
+            renderBlogCards(data.posts);
+            renderContactSites(data.sites);
+        })
+        .catch(err => console.error('Failed to load blog content:', err));
+}
+
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+function getImagePath(post) {
+    const primary = post.image;
+    const fallback = primary.endsWith('.svg')
+        ? ''
+        : primary.replace(/\.(jpg|jpeg|png|webp)$/i, '.svg');
+    return { primary, fallback };
+}
+
+function renderBlogCards(posts) {
+    const grid = document.getElementById('blogGrid');
+    if (!grid) return;
+
+    grid.innerHTML = posts.map((post, i) => {
+        const lang = currentLang;
+        const title = escapeHtml(post.title[lang]);
+        const excerpt = escapeHtml(post.excerpt[lang]);
+        const href = `blog/${post.slug}.html`;
+        const { primary, fallback } = getImagePath(post);
+        const readMore = lang === 'he' ? 'קרא עוד ←' : 'Read more →';
+        const delay = (i % 3) * 100;
+
+        return `
+            <a href="${href}" class="blog-card" data-aos="fade-up" data-aos-delay="${delay}">
+                <div class="blog-card-image">
+                    <img src="${primary}" alt="${title}" class="blog-card-img"
+                        onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}else{this.style.display='none';this.nextElementSibling.classList.add('visible');}"
+                        data-fallback="${fallback}">
+                    <div class="blog-image-placeholder"><i class="fas fa-image"></i></div>
+                </div>
+                <div class="blog-card-body">
+                    <h3>${title}</h3>
+                    <p>${excerpt}</p>
+                    <span class="blog-card-link">${readMore}</span>
+                </div>
+            </a>
+        `;
+    }).join('');
+
+    refreshAOS();
+}
+
+function renderContactSites(sites) {
+    const grid = document.getElementById('contactSitesGrid');
+    if (!grid) return;
+
+    grid.innerHTML = sites.map(site => {
+        const lang = currentLang;
+        const name = escapeHtml(site.name[lang]);
+        const summary = escapeHtml(site.summary[lang]);
+        const visit = lang === 'he' ? 'בקרו באתר' : 'Visit Website';
+
+        return `
+            <a href="${site.url}" class="contact-site-card" target="_blank" rel="noopener noreferrer">
+                <div class="contact-site-icon"><i class="fas fa-globe"></i></div>
+                <div class="contact-site-text">
+                    <strong>${name}</strong>
+                    <p>${summary}</p>
+                    <span class="contact-site-link">${visit} <i class="fas fa-external-link-alt"></i></span>
+                </div>
+            </a>
+        `;
+    }).join('');
 }

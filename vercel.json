@@ -1,0 +1,30 @@
+{
+  "redirects": [
+    { "source": "/pro-algorithm", "destination": "/#hero", "permanent": true },
+    { "source": "/pro-algo", "destination": "/#hero", "permanent": true },
+    { "source": "/ai", "destination": "/#about", "permanent": true },
+    { "source": "/ai-development", "destination": "/#about", "permanent": true },
+    { "source": "/בינה-מלאכותית", "destination": "/#about", "permanent": true },
+    { "source": "/build", "destination": "/#services", "permanent": true },
+    { "source": "/software", "destination": "/#services", "permanent": true },
+    { "source": "/saas", "destination": "/#services", "permanent": true },
+    { "source": "/software-development", "destination": "/#services", "permanent": true },
+    { "source": "/app-development", "destination": "/#services", "permanent": true },
+    { "source": "/פיתוח-תוכנה", "destination": "/#services", "permanent": true },
+    { "source": "/פיתוח-אפליקציות", "destination": "/#services", "permanent": true },
+    { "source": "/automation", "destination": "/#about", "permanent": true },
+    { "source": "/אוטומציה", "destination": "/#about", "permanent": true },
+    { "source": "/nedlan", "destination": "/#services", "permanent": true },
+    { "source": "/נדלן", "destination": "/#services", "permanent": true },
+    { "source": "/construction", "destination": "/#services", "permanent": true },
+    { "source": "/בנייה", "destination": "/#services", "permanent": true },
+    { "source": "/contact", "destination": "/#contact", "permanent": true },
+    { "source": "/צור-קשר", "destination": "/#contact", "permanent": true },
+    { "source": "/testimonials", "destination": "/#testimonials", "permanent": true },
+    { "source": "/המלצות", "destination": "/#testimonials", "permanent": true },
+    { "source": "/blog", "destination": "/#blog", "permanent": true },
+    { "source": "/בלוג", "destination": "/#blog", "permanent": true },
+    { "source": "/team", "destination": "/#team", "permanent": true },
+    { "source": "/צוות", "destination": "/#team", "permanent": true }
+  ]
+}

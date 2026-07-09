@@ -1,0 +1,216 @@
+{
+  "posts": [
+    {
+      "slug": "ai-custom-development",
+      "type": "internal",
+      "image": "images/blog/ai-custom-development.svg",
+      "title": {
+        "he": "איך לבחור שותף לפיתוח AI מותאם לעסק",
+        "en": "How to Choose a Partner for Custom AI Development"
+      },
+      "excerpt": {
+        "he": "לא כל עסק צריך את אותו פתרון AI. הנה מה שחשוב לבדוק לפני שבוחרים שותף טכנולוגי שיבנה עבורכם מערכת חכמה אמיתית.",
+        "en": "Not every business needs the same AI solution. Here's what to look for before choosing a technology partner to build a system that truly fits your needs."
+      },
+      "content": {
+        "he": [
+          "בשוק שבו כולם מדברים על בינה מלאכותית, קל להתבלבל בין כלים מוכנים לבין פתרון שבאמת פותר בעיה עסקית. ב-Pro Algorithm אנחנו מתחילים מהשאלה: איזה תהליך בעסק שלכם אפשר לשפר, לייעל או להפוך לאוטומטי — ורק אחר כך בוחרים את הטכנולוגיה.",
+          "פיתוח AI מותאם אישית כולל הבנת הנתונים שלכם, בניית מודלים או תהליכי עבודה חכמים, ושילוב במערכות קיימות. זה לא פרויקט של שבוע — אבל התוצאה היא מערכת שלמדה את העסק שלכם, לא תבנית גנרית.",
+          "כשאתם בוחרים שותף, חפשו צוות שמבין גם הנדסה וגם עסק: מי שיושב איתכם, ממפה תהליכים, ומספק מערכת production-ready ולא רק הדגמה. בדיוק כך אנחנו עובדים — מאוטומציה מלאה ועד ניתוח נתונים בזמן אמת."
+        ],
+        "en": [
+          "In a market where everyone talks about artificial intelligence, it's easy to confuse off-the-shelf tools with a solution that actually solves a business problem. At Pro Algorithm, we start with one question: which process in your business can be improved, streamlined, or automated — and only then do we choose the technology.",
+          "Custom AI development means understanding your data, building intelligent models or workflows, and integrating with existing systems. It's not a one-week project — but the result is a system that learned your business, not a generic template.",
+          "When choosing a partner, look for a team that understands both engineering and business: someone who sits with you, maps your processes, and delivers production-ready systems — not just a demo. That's exactly how we work — from full automation to real-time data analysis."
+        ]
+      },
+      "links": [
+        { "href": "/#about", "label": { "he": "למה לבחור בנו", "en": "Why Choose Us" } },
+        { "href": "/#services", "label": { "he": "השירותים שלנו", "en": "Our Services" } },
+        { "href": "/#contact", "label": { "he": "צרו קשר", "en": "Contact Us" } }
+      ]
+    },
+    {
+      "slug": "custom-saas-development",
+      "type": "internal",
+      "image": "images/blog/custom-saas-development.svg",
+      "title": {
+        "he": "מרעיון ל-SaaS: מה באמת קורה בדרך לפלטפורמה חיה",
+        "en": "From Idea to SaaS: What Really Happens on the Way to a Live Platform"
+      },
+      "excerpt": {
+        "he": "פיתוח מערכת SaaS מותאמת דורש תכנון, ארכיטקטורה נכונה וצוות שמבין גם מוצר וגם קוד. סקירה מעשית של השלבים.",
+        "en": "Building a custom SaaS platform requires planning, solid architecture, and a team that understands both product and code. A practical look at the stages."
+      },
+      "content": {
+        "he": [
+          "הרבה עסקים מגיעים אלינו עם רעיון למוצר דיגיטלי — פלטפורמה שתשרת לקוחות, תנהל תהליכים פנימיים, או תהפוך לשירות מנוי. המעבר מרעיון ל-SaaS חי דורש יותר ממסך יפה: צריך תשתית שתגדל, אבטחה, וחוויית משתמש שעובדת.",
+          "בשלב הראשון אנחנו מגדירים יחד את ה-MVP: מה חייב לעבוד בגרסה הראשונה, ומה יכול לחכות. אחר כך בונים ארכיטקטורה — מסד נתונים, API, ממשק ניהול, ואינטגרציות עם מערכות קיימות. לקוחות שלנו כבר החליפו שלוש מערכות נפרדות בפלטפורמה אחת שבנינו עבורם.",
+          "היתרון בבית תוכנה בוטיק הוא שאתם עובדים עם אותם אנשים מהרעיון ועד העלייה לאוויר. בלי handoff בין צוותים, בלי אבוד בין דרישות לקוד. אם אתם בשלב של תכנון SaaS — נשמח לשמוע."
+        ],
+        "en": [
+          "Many businesses come to us with an idea for a digital product — a platform to serve customers, manage internal processes, or become a subscription service. Moving from idea to live SaaS requires more than a pretty screen: you need infrastructure that scales, security, and a user experience that works.",
+          "In the first stage, we define the MVP together: what must work in version one, and what can wait. Then we build the architecture — database, API, admin interface, and integrations with existing systems. Our clients have already replaced three separate systems with one platform we built for them.",
+          "The advantage of a boutique software house is that you work with the same people from idea to launch. No handoffs between teams, no lost context between requirements and code. If you're planning a SaaS product — we'd love to hear from you."
+        ]
+      },
+      "links": [
+        { "href": "/#services", "label": { "he": "שירותי הפיתוח שלנו", "en": "Our Development Services" } },
+        { "href": "/#testimonials", "label": { "he": "מה הלקוחות אומרים", "en": "Client Testimonials" } },
+        { "href": "/#contact", "label": { "he": "קבלו ייעוץ חינם", "en": "Get a Free Consultation" } }
+      ]
+    },
+    {
+      "slug": "business-automation",
+      "type": "internal",
+      "image": "images/blog/business-automation.svg",
+      "title": {
+        "he": "אוטומציה בעסק: איפה מתחילים ומה באמת חוסכים",
+        "en": "Business Automation: Where to Start and What You Actually Save"
+      },
+      "excerpt": {
+        "he": "אוטומציה לא חייבת להיות פרויקט ענק. הנה איך לזהות תהליכים שכדאי להפוך לחכמים, ומה התוצאות שאפשר לצפות להן.",
+        "en": "Automation doesn't have to be a massive project. Here's how to identify processes worth making intelligent, and what results you can expect."
+      },
+      "content": {
+        "he": [
+          "תהליכים ידניים — העתקת נתונים בין מערכות, בדיקות חוזרות, תיאום במיילים — הם בזבוז זמן שאפשר להפוך ליתרון תחרותי. האלגוריתמים שלנו עובדים 24/7, מנתחים נתונים ומבצעים פעולות בזמן אמת בלי התערבות ידנית.",
+          "השלב הראשון הוא מיפוי: אילו משימות חוזרות על עצמן, איפה נוצרות טעויות אנוש, ואילו נתונים כבר קיימים בארגון. משם בונים אוטומציה מדורגת — לא הכל בבת אחת, אלא quick wins שמוכיחים ערך ואז הרחבה.",
+          "לקוחות שלנו חסכו חודשים של עבודה ידנית על ידי מערכות שמזהות שגיאות אוטומטית, מעבדות קבצים מורכבים, ומחברות בין צוותים. אם אתם מרגישים שהתהליכים תקועים באקסלים — זה בדיוק המקום להתחיל."
+        ],
+        "en": [
+          "Manual processes — copying data between systems, repetitive checks, coordination over email — are wasted time that can become a competitive advantage. Our algorithms work 24/7, analyzing data and executing actions in real time without manual intervention.",
+          "The first step is mapping: which tasks repeat themselves, where human errors occur, and what data already exists in your organization. From there, we build automation in stages — not everything at once, but quick wins that prove value and then expand.",
+          "Our clients have saved months of manual work with systems that automatically detect errors, process complex files, and connect teams. If you feel your processes are stuck in spreadsheets — that's exactly where to start."
+        ]
+      },
+      "links": [
+        { "href": "/#about", "label": { "he": "היתרונות שלנו", "en": "Our Advantages" } },
+        { "href": "/#team", "label": { "he": "הצוות שלנו", "en": "Our Team" } },
+        { "href": "/#contact", "label": { "he": "דברו איתנו", "en": "Talk to Us" } }
+      ]
+    },
+    {
+      "slug": "pro-algo-software-house",
+      "type": "external",
+      "image": "images/blog/pro-algorithm.png",
+      "externalUrl": "https://www.pro-algorithm.co.il/",
+      "title": {
+        "he": "בית התוכנה הבוטיקי שמאחורי אפליקציות, SaaS ומערכות AI בהתאמה אישית",
+        "en": "The Boutique Israeli Software House Behind Custom Apps, SaaS, and AI Systems"
+      },
+      "excerpt": {
+        "he": "יש חברות שקונות תוכנת מדף ומכריחות את העסק להתאים את עצמו אליה. החכמות בונות תוכנה שמתאימה לעסק.",
+        "en": "Some companies buy off-the-shelf software and force their business to fit it. The smart ones build software that fits their business."
+      },
+      "content": {
+        "he": [
+          "זה בדיוק מה שאנחנו עושים ב-Pro Algorithm — בית תוכנה בוטיק, ישראלי במאה אחוז, המתמחה בפיתוח אפליקציות בהתאמה אישית, מערכות SaaS מתקדמות, שילוב AI ואוטומציה מקצה לקצה.",
+          "אתר הפיתוח שלנו, pro-algorithm.co.il, מציג את הדרך שבה אנחנו עובדים: צוות מובחר של מהנדסים מנוסים ומומחי AI שיושבים איתכם, מבינים את התהליכים שלכם, ובונים מערכות שפשוט עובדות. תיק העבודות שלנו כולל אפליקציות עסקיות מותאמות, פתרונות E-commerce ומובייל, ואוטומציה חכמה שרצה 24/7.",
+          "הלקוחות שלנו מספרים את הסיפור הכי טוב: חברות שהחליפו שלוש מערכות נפרדות בפלטפורמה אחת שבנינו עבורן, צוותים שהפכו קבצי הנדסה מורכבים למערכת לזיהוי שגיאות אוטומטי, ועסקים שמוצרי ה-SaaS מבוססי ה-AI שלהם הצמיחו את ההכנסות באופן משמעותי.",
+          "אם אתם מחפשים שותף טכנולוגי שמבין גם את הצד העסקי וגם את הצד ההנדסי — ומספק מערכות ברמת פרודקשן, לא אבות-טיפוס — כאן מתחילים."
+        ],
+        "en": [
+          "That's exactly what we do at Pro Algorithm — a boutique, 100% Israeli software house specializing in custom application development, advanced SaaS platforms, AI integration, and end-to-end automation.",
+          "Our development site, pro-algorithm.co.il, showcases how we work: a hand-picked team of experienced engineers and AI specialists who sit with you, understand your processes, and build systems that simply work. Our portfolio spans custom business applications, e-commerce and mobile solutions, and intelligent automation that runs 24/7.",
+          "Our clients tell the story best: companies that replaced three separate systems with one platform we built for them, teams that turned complex engineering files into automated error-detection systems and saved months of manual work, and businesses whose AI-powered SaaS products meaningfully grew their revenue.",
+          "If you're looking for a technology partner that understands both the business side and the engineering side — and delivers production-grade systems, not prototypes — this is where to start."
+        ]
+      },
+      "cta": {
+        "he": "קבלו ייעוץ חינם ב-pro-algorithm.co.il",
+        "en": "Get a free consultation at pro-algorithm.co.il"
+      }
+    },
+    {
+      "slug": "buildalgo-real-estate",
+      "type": "external",
+      "image": "images/blog/buildalgo-vid.png",
+      "externalUrl": "https://www.buildalgo.co.il/",
+      "title": {
+        "he": "BuildAlgo: בינה מלאכותית ואוטומציה שנבנו במיוחד לעולמות הנדל\"ן והבנייה",
+        "en": "BuildAlgo: AI and Automation Built for the Construction and Real Estate Industry"
+      },
+      "excerpt": {
+        "he": "עולם הבנייה והנדל\"ן חי על תוכניות, גרסאות ואינסוף תיאומים — ובדיוק שם טכנולוגיה יכולה לעשות את ההבדל הגדול ביותר.",
+        "en": "Construction and real estate run on drawings, revisions, and endless coordination — and that's exactly where technology can make the biggest difference."
+      },
+      "content": {
+        "he": [
+          "BuildAlgo היא הזרוע הייעודית של Pro Algorithm לעולמות הנדל\"ן והבנייה: מערכות מבוססות AI ואוטומציה שתוכננו במיוחד עבור יזמים, קבלנים ומשרדי הנדסה.",
+          "אנחנו מדברים את השפה של הענף. הצוות שלנו משלב מומחיות עמוקה בתוכנה וב-AI עם ניסיון מעשי בתהליכי עבודה של בנייה — מסביבות BIM כמו Revit ו-AutoCAD, דרך ניתוח תוכניות, ועד ניהול שינויי דיירים ותיעוד פרויקטים.",
+          "התוצאה: תהליכים שנמשכו שבועות של פינג-פונג ידני הופכים למובנים, שקופים ומהירים משמעותית. פחות טעויות, תיעוד ברור יותר, רווחיות טובה יותר.",
+          "אם הארגון שלכם בונה, יוזם או מנהל נדל\"ן, ואתם מרגישים שהתהליכים תקועים באקסלים ובשרשורי מיילים — BuildAlgo נבנתה בדיוק בשבילכם."
+        ],
+        "en": [
+          "BuildAlgo is Pro Algorithm's dedicated arm for the construction and real estate world: AI-powered systems and automation designed specifically for developers, contractors, and engineering firms.",
+          "We speak the industry's language. Our team combines deep software and AI expertise with hands-on experience in construction workflows — from BIM environments like Revit and AutoCAD to plan analysis, tenant-change management, and project documentation.",
+          "The result: processes that used to take weeks of manual back-and-forth become structured, transparent, and dramatically faster. Fewer errors, clearer records, better margins.",
+          "If your organization builds, develops, or manages real estate and you feel your workflows are stuck in spreadsheets and email threads, BuildAlgo was built for you."
+        ]
+      },
+      "cta": {
+        "he": "גלו איך זה עובד ב-buildalgo.co.il",
+        "en": "See how it works at buildalgo.co.il"
+      }
+    },
+    {
+      "slug": "tzach-dabush-ai-research",
+      "type": "external",
+      "image": "images/blog/tzach-dabush.jpg",
+      "externalUrl": "https://tzach-dabush.com/",
+      "title": {
+        "he": "להכיר את האיש שמאחורי Pro Algorithm: צח דבוש על AI, NLP ומחקר יישומי",
+        "en": "Meet the Mind Behind Pro Algorithm: Tzach Dabush on AI, NLP, and Applied Research"
+      },
+      "excerpt": {
+        "he": "מאחורי כל חברת טכנולוגיה חזקה עומד מישהו שחי ונושם את התחום. פורטפוליו מקצועי של מחקר, פרסומים ומאמרים על AI.",
+        "en": "Behind every strong technology company stands someone who lives and breathes the field. A professional portfolio of research, publications, and articles on AI."
+      },
+      "content": {
+        "he": [
+          "צח דבוש — מייסד ו-CTO של Pro Algorithm — משלב מנהיגות הנדסית מעשית עם עומק אקדמי בתחומי הבינה המלאכותית ועיבוד השפה הטבעית (NLP).",
+          "האתר האישי שלו, tzach-dabush.com, הוא פורטפוליו מקצועי המציג את עבודתו המחקרית, שיתופי פעולה עם פרופסורים מובילים, ופרסומים בתחומי ה-AI וה-NLP. באתר תמצאו גם את מדור המאמרים שלו: תכנים מעמיקים ונגישים שבוחנים לאן ה-AI הולך ואיך מודלי שפה באמת עובדים.",
+          "השילוב הזה הוא שמעצב את ה-DNA של Pro Algorithm. הפתרונות של החברה לא נבנים על הייפ — הם מבוססים על הבנה אמיתית של האלגוריתמים שמתחת למכסה המנוע, שחודדה גם במחקר וגם בשנים של בניית מערכות פרודקשן ללקוחות אמיתיים.",
+          "אם אתם רוצים להבין את החשיבה שמאחורי הטכנולוגיה — המאמרים של צח הם נקודת פתיחה מצוינת."
+        ],
+        "en": [
+          "Tzach Dabush — founder and CTO of Pro Algorithm — brings together hands-on engineering leadership with academic depth in artificial intelligence and natural language processing.",
+          "His personal site, tzach-dabush.com, is a professional portfolio showcasing his research work, collaborations with leading professors, and publications in AI and NLP. It's also home to his articles: in-depth, accessible pieces that explore where AI is heading and how language models actually work.",
+          "This blend is what shapes Pro Algorithm's DNA. The company's solutions aren't built on hype — they're grounded in a genuine understanding of the algorithms underneath, refined through both research and years of building production systems for real clients.",
+          "If you want to understand the thinking behind the technology — Tzach's articles are a great place to start."
+        ]
+      },
+      "cta": {
+        "he": "קראו עוד ב-tzach-dabush.com",
+        "en": "Read more at tzach-dabush.com"
+      }
+    }
+  ],
+  "sites": [
+    {
+      "url": "https://www.pro-algorithm.co.il/",
+      "name": { "he": "Pro Algorithm — בית תוכנה", "en": "Pro Algorithm — Software House" },
+      "summary": {
+        "he": "פיתוח אפליקציות, SaaS ומערכות AI בהתאמה אישית. צוות בוטיק ישראלי שבונה מערכות production-ready.",
+        "en": "Custom apps, SaaS, and AI systems. A boutique Israeli team building production-grade platforms."
+      }
+    },
+    {
+      "url": "https://www.buildalgo.co.il/",
+      "name": { "he": "BuildAlgo — הנדל\"ן ובנייה", "en": "BuildAlgo — Real Estate & Construction" },
+      "summary": {
+        "he": "AI ואוטומציה לעולמות הבנייה: Revit, BIM, ניתוח תוכניות וניהול שינויי דיירים.",
+        "en": "AI and automation for construction: Revit, BIM, plan analysis, and tenant-change management."
+      }
+    },
+    {
+      "url": "https://tzach-dabush.com/",
+      "name": { "he": "צח דבוש — מחקר ו-AI", "en": "Tzach Dabush — Research & AI" },
+      "summary": {
+        "he": "פורטפוליו מקצועי, מחקר ב-NLP ומאמרים על בינה מלאכותית ומודלי שפה.",
+        "en": "Professional portfolio, NLP research, and articles on AI and language models."
+      }
+    }
+  ]
+}
