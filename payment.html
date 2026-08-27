@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google tag (gtag.js) - for google analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WNYH9370R7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WNYH9370R7');
+    </script>
+    <!-- End Google tag (gtag.js) -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1211673381044842');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1211673381044842&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <title>תשלום מאובטח | Pro Algorithm</title>
+    <meta name="description" content="עמוד תשלום מאובטח של Pro Algorithm - סליקת אשראי מאובטחת באמצעות Grow.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@700;900&family=Rubik:wght@800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="payment-body">
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container navbar-content">
+            <a href="/" class="logo">
+                <img src="/images/logo/all-blue-logo.png" alt="Pro Algorithm" class="proAlgo-logo-img">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about" data-he="יתרונות" data-en="Benefits">יתרונות</a></li>
+                <li><a href="/#services" data-he="איך זה עובד" data-en="How It Works">איך זה עובד</a></li>
+                <li><a href="/#blog" data-he="בלוג" data-en="Blog">בלוג</a></li>
+                <li><a href="/#contact" data-he="צור קשר" data-en="Contact">צור קשר</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="lang-toggle" id="langToggle" title="Switch Language">
+                    <span class="lang-he">EN</span>
+                    <span class="lang-en" style="display:none;">HE</span>
+                </button>
+                <a href="/#contact" class="btn btn-primary nav-cta" data-he="צרו קשר" data-en="Contact Us">צרו קשר</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="payment-page">
+        <div class="container payment-container">
+
+            <div class="payment-card">
+                <div class="pay-head">
+                    <div class="pay-lock"><i class="fas fa-lock"></i></div>
+                    <h1 class="pay-title" data-he="תשלום מאובטח" data-en="Secure Payment">תשלום מאובטח</h1>
+                    <p class="pay-subtitle" data-he="מלאו את הפרטים ותועברו לעמוד סליקה מאובטח"
+                        data-en="Fill in your details and you will be sent to a secure checkout page">
+                        מלאו את הפרטים ותועברו לעמוד סליקה מאובטח</p>
+                </div>
+
+                <!-- Shown while an encrypted link (?d=...) is being decoded -->
+                <div class="pay-state" id="payLoading" hidden>
+                    <div class="pay-spinner"></div>
+                    <p data-he="טוען את פרטי התשלום..." data-en="Loading payment details...">טוען את פרטי התשלום...</p>
+                </div>
+
+                <!-- Shown when the link is invalid, tampered with or expired -->
+                <div class="pay-state pay-state-error" id="payInvalid" hidden>
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <p id="payInvalidText"></p>
+                    <a href="/#contact" class="btn btn-outline" data-he="צרו קשר" data-en="Contact us">צרו קשר</a>
+                </div>
+
+                <div id="payContent">
+                <!-- Amount -->
+                <div class="pay-amount-box">
+                    <span class="pay-amount-label" data-he="סכום לתשלום" data-en="Amount to pay">סכום לתשלום</span>
+
+                    <div class="pay-amount-input" id="amountEditable">
+                        <span class="pay-currency">&#8362;</span>
+                        <input type="text" id="amount" inputmode="decimal" autocomplete="off" placeholder="0"
+                            aria-label="Amount to pay">
+                    </div>
+
+                    <div class="pay-amount-static" id="amountStatic" hidden>
+                        <span class="pay-currency">&#8362;</span>
+                        <span id="amountStaticValue">0</span>
+                    </div>
+
+                    <p class="pay-vat" data-he="הסכום כולל מע&quot;מ" data-en="VAT included">הסכום כולל מע"מ</p>
+
+                    <div class="pay-quick" id="quickAmounts">
+                        <button type="button" class="pay-chip" data-amount="500">&#8362;500</button>
+                        <button type="button" class="pay-chip" data-amount="1000">&#8362;1,000</button>
+                        <button type="button" class="pay-chip" data-amount="2500">&#8362;2,500</button>
+                        <button type="button" class="pay-chip" data-amount="5000">&#8362;5,000</button>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <form class="pay-form" id="paymentForm" novalidate>
+                    <div class="pay-field pay-field-full">
+                        <label for="description" data-he="עבור" data-en="For">עבור</label>
+                        <input type="text" id="description" maxlength="120" autocomplete="off">
+                    </div>
+
+                    <div class="pay-field">
+                        <label for="fullName" data-he="שם מלא *" data-en="Full name *">שם מלא *</label>
+                        <input type="text" id="fullName" autocomplete="name">
+                    </div>
+
+                    <div class="pay-field">
+                        <label for="phone" data-he="טלפון נייד *" data-en="Mobile phone *">טלפון נייד *</label>
+                        <input type="tel" id="phone" autocomplete="tel" dir="ltr">
+                    </div>
+
+                    <div class="pay-field">
+                        <label for="email" data-he="אימייל * (לקבלת החשבונית)"
+                            data-en="Email * (for the invoice)">אימייל * (לקבלת החשבונית)</label>
+                        <input type="email" id="email" autocomplete="email" dir="ltr">
+                    </div>
+
+                    <div class="pay-field">
+                        <label for="businessTaxId" data-he="ח.פ / ע.מ (אופציונלי)"
+                            data-en="Business tax ID (optional)">ח.פ / ע.מ (אופציונלי)</label>
+                        <input type="text" id="businessTaxId" inputmode="numeric" autocomplete="off" dir="ltr">
+                    </div>
+
+                    <div class="pay-field pay-field-full" id="paymentsField">
+                        <label for="paymentsCount" data-he="מספר תשלומים" data-en="Number of installments">מספר
+                            תשלומים</label>
+                        <select id="paymentsCount"></select>
+                    </div>
+
+                    <div class="pay-error" id="payError" hidden></div>
+
+                    <button type="submit" class="btn btn-submit btn-lg btn-full" id="paySubmit"
+                        data-he="<i class='fas fa-lock'></i> המשך לתשלום מאובטח"
+                        data-en="<i class='fas fa-lock'></i> Continue to secure checkout"><i class="fas fa-lock"></i>
+                        המשך לתשלום מאובטח</button>
+
+                    <p class="pay-note"
+                        data-he="הסליקה מתבצעת בעמוד מאובטח של Grow (משולם). פרטי האשראי אינם נשמרים אצלנו."
+                        data-en="Checkout is handled on a secure Grow (Meshulam) page. We never store your card details.">
+                        הסליקה מתבצעת בעמוד מאובטח של Grow (משולם). פרטי האשראי אינם נשמרים אצלנו.</p>
+                </form>
+
+                <div class="pay-badges">
+                    <span><i class="fas fa-shield-halved"></i> <span data-he="תקן PCI DSS"
+                            data-en="PCI DSS compliant">תקן PCI DSS</span></span>
+                    <span><i class="fas fa-file-invoice"></i> <span data-he="חשבונית מס קבלה במייל"
+                            data-en="Tax invoice by email">חשבונית מס קבלה במייל</span></span>
+                    <span class="pay-cards"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i
+                            class="fab fa-cc-amex"></i></span>
+                </div>
+                </div><!-- /#payContent -->
+            </div>
+
+            <a href="/" class="pay-back-link" data-he="&#8592; חזרה לאתר" data-en="&#8592; Back to site">&#8592; חזרה
+                לאתר</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-simple">
+                <a href="/" class="logo">
+                    <img src="/images/logo/all-blue-logo.png" alt="Pro Algorithm" class="proAlgo-logo-img"
+                        style="max-height:40px;">
+                </a>
+                <p class="footer-copyright" data-he="&copy; 2026 Pro Algorithm. כל הזכויות שמורות."
+                    data-en="&copy; 2026 Pro Algorithm. All rights reserved.">&copy; 2026 Pro Algorithm. כל הזכויות
+                    שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/pay-config.js"></script>
+    <script src="/js/pay-crypto.js"></script>
+    <script src="/js/pay-shared.js"></script>
+    <script src="/js/payment.js"></script>
+</body>
+
+</html>
