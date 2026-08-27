@@ -16,8 +16,9 @@
     const Pay = window.ProAlgoPay;
     const Crypto = window.ProAlgoPayCrypto;
 
-    /* How long to wait for cdn.meshulam.co.il before falling back to a redirect */
-    const GROW_SDK_TIMEOUT_MS = 6000;
+    /* How long to wait for cdn.meshulam.co.il - same budget the CRM allows
+       in src/grow/hooks/useGrowPayment.ts */
+    const GROW_SDK_TIMEOUT_MS = 10000;
 
     const els = {};
     let lockedAmount = null;
@@ -60,7 +61,8 @@
                             events: {
                                 onPaymentStart: () => { },
                                 onSuccess: () => showSuccess(),
-                                onFailure: () => {
+                                onFailure: (response) => {
+                                    console.error('Grow payment failed:', response);
                                     setSubmitBusy(false);
                                     showError(Pay.t('errPaymentFailed'));
                                 },
@@ -257,9 +259,16 @@
                 return;
             }
 
-            /* The CDN was blocked or slow - fall back to Grow's hosted page. */
-            setSubmitBusy(true, Pay.t('redirecting'));
-            window.location.href = process.url;
+            /* Our endpoint goes through Meshulam's createPaymentProcess, which
+               returns no hosted-page url - so this only fires if that ever changes. */
+            if (process.url) {
+                setSubmitBusy(true, Pay.t('redirecting'));
+                window.location.href = process.url;
+                return;
+            }
+
+            setSubmitBusy(false);
+            showError(Pay.t('errCheckoutUnavailable'));
         } catch (err) {
             setSubmitBusy(false);
             showError(err.message || Pay.t('errServer'));
