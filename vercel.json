@@ -1,4 +1,6 @@
 {
+  "buildCommand": "node scripts/build-pay-config.js",
+  "outputDirectory": ".",
   "redirects": [
     { "source": "/pro-algorithm", "destination": "/#hero", "permanent": true },
     { "source": "/pro-algo", "destination": "/#hero", "permanent": true },
@@ -25,6 +27,11 @@
     { "source": "/blog", "destination": "/#blog", "permanent": true },
     { "source": "/בלוג", "destination": "/#blog", "permanent": true },
     { "source": "/team", "destination": "/#team", "permanent": true },
-    { "source": "/צוות", "destination": "/#team", "permanent": true }
+    { "source": "/צוות", "destination": "/#team", "permanent": true },
+    { "source": "/pay", "destination": "/payment.html", "permanent": false },
+    { "source": "/payment", "destination": "/payment.html", "permanent": false },
+    { "source": "/תשלום", "destination": "/payment.html", "permanent": false },
+    { "source": "/pay-link", "destination": "/payment-link.html", "permanent": false },
+    { "source": "/create-payment-link", "destination": "/payment-link.html", "permanent": false }
   ]
 }

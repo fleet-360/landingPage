@@ -1,0 +1,39 @@
+---
+description: Never modify, commit, or deploy another repository without explicit user permission
+alwaysApply: true
+---
+
+# Cross-repository changes require permission
+
+The active workspace is the boundary. Do not touch other repositories unless the user explicitly approves.
+
+## Scope
+
+"Another repository" means any Git root or project outside the current workspace path, including sibling repos (e.g. `Front/fleet-crm-frontend` when the workspace is `Back/cars-server`).
+
+## Before any cross-repo action
+
+Stop and ask the user for permission. Explain:
+- which repository would be affected
+- why it seems necessary
+- what files or actions are planned (edit, commit, push, deploy, workflow input such as `front_ref`)
+
+Use `AskQuestion` or a direct question when available. Do not proceed until the user agrees.
+
+## Forbidden without explicit approval
+
+- Editing files outside the current workspace root
+- Creating branches, commits, or pushes in another repo
+- Running workflows or deploys that build or change another repo (e.g. `front_ref` on another branch)
+- Assuming a monorepo sibling is in scope because it was edited in a past conversation
+
+## Allowed in the current workspace only
+
+- Read-only inspection of other repos (search, read files) when needed to answer a question — still prefer the active workspace when possible
+- Changes strictly inside the current workspace root unless the user says otherwise
+
+## When the user approves cross-repo work
+
+- Restate the approved repo and scope before editing
+- Keep changes minimal and limited to what was approved
+- Do not expand to additional repos without asking again
