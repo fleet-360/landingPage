@@ -4,7 +4,7 @@ Two pages, both `noindex`:
 
 | URL | File | What it does |
 | --- | --- | --- |
-| `/pay` (`/payment`, `/תשלום`) | `payment.html` | Customer-facing. Collects the details, creates a Grow payment process and redirects to the secure checkout page. |
+| `/pay` (`/payment`, `/תשלום`) | `payment.html` | Customer-facing, reachable **only through a generated link**. Collects the details, creates a Grow payment process and redirects to the secure checkout page. |
 | `/pay-link` (`/create-payment-link`) | `payment-link.html` | Internal. Password protected. Generates the encrypted link to send to a customer. |
 
 ## Backend
@@ -49,8 +49,9 @@ node scripts/build-pay-config.js
 
 `js/pay-config.js` and `.env` are gitignored - this repository is public.
 
-If the variables are missing the build still succeeds: `/pay-link` shows a
-"not configured" message and `/pay` keeps working as a plain amount-entry page.
+If the variables are missing the build still succeeds - it just leaves both
+pages inert: `/pay-link` shows a "not configured" message, and `/pay` cannot
+decrypt any link.
 
 ## How a link is built
 
@@ -66,7 +67,8 @@ The payload carries the amount, the description, optional customer details, the
 number of installments, the page language, whether the amount is editable, and
 an optional expiry timestamp. `payment.html` decrypts it on load; a token that
 was edited, truncated, produced with another secret, or has expired is refused
-with a message instead of the form.
+with a message instead of the form. So is a bare `/pay` with no token - there is
+no free amount-entry mode, the page only opens through a link we generated.
 
 Changing `PAY_LINK_SECRET` invalidates every link already sent out. Changing the
 admin password or redeploying only invalidates open `/pay-link` sessions.

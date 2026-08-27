@@ -38,6 +38,10 @@ window.ProAlgoPay = (function () {
             he: 'קישור התשלום אינו תקין. בקשו קישור חדש או צרו איתנו קשר.',
             en: 'This payment link is not valid. Please ask for a new one or contact us.'
         },
+        errNoLink: {
+            he: 'לא נמצאו פרטי תשלום. יש לפתוח את קישור התשלום שנשלח אליכם.',
+            en: 'No payment details found. Please open the payment link you were sent.'
+        },
         errExpiredLink: {
             he: 'תוקף קישור התשלום פג. בקשו קישור חדש או צרו איתנו קשר.',
             en: 'This payment link has expired. Please ask for a new one or contact us.'

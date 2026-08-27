@@ -2,13 +2,14 @@
    PRO ALGORITHM - Quick payment page
    Creates a Grow payment process and redirects to checkout.
 
-   The amount and customer details normally arrive inside an encrypted
-   token produced by /pay-link:   /pay?d=8Kj3...
-   A tampered, truncated or expired token is refused.
+   The amount and customer details arrive inside an encrypted token
+   produced by /pay-link:   /pay?d=8Kj3...
+   A tampered, truncated or expired token is refused, and so is a bare
+   /pay with no token - the page is only reachable through a link we sent.
 
    Readable params (?amount=&desc=&name=&email=&phone=&payments=&taxid=&lang=&edit=1)
-   are only honoured when PAY_ALLOW_PLAIN_PARAMS=1 at build time.
-   With no params at all the page simply lets the visitor type an amount.
+   are an escape hatch for debugging, honoured only when
+   PAY_ALLOW_PLAIN_PARAMS=1 at build time.
    ============================================ */
 
 (function () {
@@ -83,7 +84,6 @@
     function renderLockedAmount() {
         els.amountEditable.hidden = true;
         els.amountStatic.hidden = false;
-        els.quickAmounts.hidden = true;
         els.amountStaticValue.textContent = Pay.formatAmount(lockedAmount);
     }
 
@@ -209,20 +209,9 @@
         }
     }
 
-    function initQuickAmounts() {
-        els.quickAmounts.addEventListener('click', (e) => {
-            const chip = e.target.closest('.pay-chip');
-            if (!chip) return;
-            els.amount.value = Pay.formatAmount(Number(chip.dataset.amount));
-            els.quickAmounts.querySelectorAll('.pay-chip').forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            clearError();
-        });
-
-        els.amount.addEventListener('input', () => {
-            els.quickAmounts.querySelectorAll('.pay-chip').forEach(c => c.classList.remove('active'));
-            clearError();
-        });
+    /* Only reachable when the link left the amount editable. */
+    function initAmountField() {
+        els.amount.addEventListener('input', clearError);
 
         /* Normalize the typed amount when the field loses focus */
         els.amount.addEventListener('blur', () => {
@@ -238,7 +227,13 @@
         const token = q.get('d');
 
         if (!token) {
-            return Pay.getConfig().allowPlainParams ? readPlainParams(q) : null;
+            /* The page is only meant to be opened through a link we generated. */
+            const plain = Pay.getConfig().allowPlainParams ? readPlainParams(q) : null;
+            if (!plain || !Pay.isValidAmount(Pay.parseAmount(plain.amount))) {
+                showInvalid('errNoLink');
+                return undefined;
+            }
+            return plain;
         }
 
         els.content.hidden = true;
@@ -275,7 +270,6 @@
         els.amountEditable = document.getElementById('amountEditable');
         els.amountStatic = document.getElementById('amountStatic');
         els.amountStaticValue = document.getElementById('amountStaticValue');
-        els.quickAmounts = document.getElementById('quickAmounts');
         els.description = document.getElementById('description');
         els.fullName = document.getElementById('fullName');
         els.phone = document.getElementById('phone');
@@ -301,10 +295,10 @@
 
         const params = await resolveParams();
         if (params === undefined) return; /* an error state is already on screen */
-        if (params) applyParams(params);
+        applyParams(params);
 
         syncDefaultDescription();
-        initQuickAmounts();
+        initAmountField();
 
         /* Once the visitor edits the description it is no longer the default */
         els.description.addEventListener('input', () => {
