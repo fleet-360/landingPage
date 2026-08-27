@@ -15,8 +15,14 @@ No backend was added. Both pages call the endpoint that already exists on
 ```
 POST https://api.fleet360.co.il/grow/proAlgorithm/createPaymentLink
 { fullName, email, phone, sum, description, paymentNumber, businessTaxId }
--> { success: true, paymentUrl: { url, authCode, ... } }
+-> { success: true, paymentUrl: { processId, processToken, authCode } }
 ```
+
+Note the response shape: it goes through Meshulam's `createPaymentProcess`,
+which returns **no hosted-page `url`** - only `authCode`, which is what the
+embedded widget needs. `url` is returned by the `sdkWallet` variant used
+elsewhere in the CRM, which calls Meshulam's `createPaymentLink` instead.
+The `authCode` is valid for 4 minutes.
 
 After a successful payment the Grow webhook (`/grow/payment/notifyProAlgorithm`)
 issues the Caspit tax invoice and emails it to the customer. The amount entered
@@ -31,9 +37,10 @@ endpoint returns, so the card form opens over the page instead of navigating
 away. The SDK's `onSuccess` / `onFailure` / `onError` / `onClose` events drive
 the page state.
 
-If the CDN is blocked or slow, the page waits 6 s and then falls back to
-redirecting to `paymentUrl.url` - Grow's hosted page - so a payment is never
-lost to a script that failed to load.
+If the CDN is blocked or slow the page waits 10 s - the same budget the CRM
+allows in `src/grow/hooks/useGrowPayment.ts` - and then tells the customer to
+refresh. There is no hosted-page fallback because the endpoint returns no `url`;
+the redirect branch only runs if that ever changes.
 
 `PAY_GROW_ENVIRONMENT` must match `CREDIT_CARD_ENVIRONMENT` on cars-server,
 otherwise the widget and the created process are in different environments.

@@ -41,6 +41,10 @@ window.ProAlgoPay = (function () {
             he: 'שגיאה במערכת התשלומים. נסו שוב בעוד רגע.',
             en: 'The payment system returned an error. Please try again in a moment.'
         },
+        errCheckoutUnavailable: {
+            he: 'לא הצלחנו לפתוח את חלון התשלום. רעננו את הדף ונסו שוב.',
+            en: 'We could not open the payment window. Please refresh the page and try again.'
+        },
         onePayment: { he: 'תשלום אחד', en: 'Single payment' },
         nPayments: { he: 'עד {n} תשלומים', en: 'Up to {n} payments' },
         errInvalidLink: {
@@ -147,12 +151,23 @@ window.ProAlgoPay = (function () {
             throw new Error(data.error || t('errServer'));
         }
 
-        const payload = data.paymentUrl;
-        const url = typeof payload === 'string' ? payload : payload.url;
+        /* createPaymentProcess answers with { processId, processToken, authCode }.
+           There is no `url`: only the sdkWallet variant, which calls Meshulam's
+           createPaymentLink instead, returns a hosted page address. So authCode
+           is what we require, and url is used only when it happens to be there. */
+        const payload = typeof data.paymentUrl === 'string'
+            ? { url: data.paymentUrl }
+            : (data.paymentUrl || {});
 
-        if (!url) throw new Error(t('errServer'));
+        if (!payload.authCode && !payload.url) throw new Error(t('errServer'));
 
-        return { url, authCode: payload && payload.authCode, raw: payload };
+        return {
+            authCode: payload.authCode || '',
+            url: payload.url || '',
+            processId: payload.processId,
+            processToken: payload.processToken,
+            raw: payload
+        };
     }
 
     /* ---------- Page chrome (navbar / hamburger / language) ---------- */
