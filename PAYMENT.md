@@ -4,7 +4,7 @@ Two pages, both `noindex`:
 
 | URL | File | What it does |
 | --- | --- | --- |
-| `/pay` (`/payment`, `/תשלום`) | `payment.html` | Customer-facing, reachable **only through a generated link**. Collects the details, creates a Grow payment process and redirects to the secure checkout page. |
+| `/pay` (`/payment`, `/תשלום`) | `payment.html` | Customer-facing, reachable **only through a generated link**. Standalone checkout - no site navbar, no outbound links. Collects the details and runs the Grow widget **in the page**. |
 | `/pay-link` (`/create-payment-link`) | `payment-link.html` | Internal. Password protected. Generates the encrypted link to send to a customer. |
 
 ## Backend
@@ -23,6 +23,21 @@ issues the Caspit tax invoice and emails it to the customer. The amount entered
 on the page is the **total including VAT** - the invoice derives the pre-VAT
 figure from it.
 
+## Embedded checkout
+
+`payment.html` loads Grow's SDK (`https://cdn.meshulam.co.il/sdk/gs.min.js`) and
+calls `growPayment.renderPaymentOptions(authCode)` with the `authCode` the
+endpoint returns, so the card form opens over the page instead of navigating
+away. The SDK's `onSuccess` / `onFailure` / `onError` / `onClose` events drive
+the page state.
+
+If the CDN is blocked or slow, the page waits 6 s and then falls back to
+redirecting to `paymentUrl.url` - Grow's hosted page - so a payment is never
+lost to a script that failed to load.
+
+`PAY_GROW_ENVIRONMENT` must match `CREDIT_CARD_ENVIRONMENT` on cars-server,
+otherwise the widget and the created process are in different environments.
+
 The API only accepts browser requests from origins in the server's CORS
 allowlist. `pro-algo.com` and `www.pro-algo.com` are already there; any new
 domain for this site has to be added in `cars-server/middlewares/cors.js`.
@@ -38,6 +53,7 @@ local `.env` for development (see `.env.example`):
 | `PAY_ADMIN_PASSWORD` | Password for `/pay-link` |
 | `PAY_LINK_SECRET` | Key used to encrypt the link parameters |
 | `PAY_ALLOW_PLAIN_PARAMS` | `1` to also accept readable params on `/pay` (default `0`) |
+| `PAY_GROW_ENVIRONMENT` | `PRODUCTION` or `DEV` for the embedded widget (default `PRODUCTION`) |
 
 `scripts/build-pay-config.js` turns them into `js/pay-config.js` at build time.
 It runs as the Vercel build command (see `vercel.json`); run it by hand for

@@ -59,6 +59,9 @@ function main() {
     const password = process.env.PAY_ADMIN_PASSWORD || '';
     const secret = process.env.PAY_LINK_SECRET || '';
     const allowPlainParams = process.env.PAY_ALLOW_PLAIN_PARAMS === '1';
+    /* Must match CREDIT_CARD_ENVIRONMENT on cars-server, or the embedded
+       Grow widget talks to the wrong environment. */
+    const growEnvironment = process.env.PAY_GROW_ENVIRONMENT === 'DEV' ? 'DEV' : 'PRODUCTION';
 
     const missing = [];
     if (!user) missing.push('PAY_ADMIN_USER');
@@ -70,7 +73,7 @@ function main() {
            The payment pages detect `configured: false` and say so. */
         console.warn('[pay-config] Missing ' + missing.join(', ') +
             ' - the payment link generator will be disabled. See .env.example.');
-        write({ configured: false, allowPlainParams, version: 1 });
+        write({ configured: false, allowPlainParams, growEnvironment, version: 1 });
         return;
     }
 
@@ -87,7 +90,8 @@ function main() {
             .digest('base64'),
         passHash: crypto.pbkdf2Sync(password, salt, PBKDF2_ITERATIONS, 32, 'sha256').toString('base64'),
         linkSecret: secret,
-        allowPlainParams
+        allowPlainParams,
+        growEnvironment
     });
 
     console.log('[pay-config] Wrote ' + path.relative(ROOT, OUTPUT) +

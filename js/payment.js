@@ -16,9 +16,74 @@
     const Pay = window.ProAlgoPay;
     const Crypto = window.ProAlgoPayCrypto;
 
+    /* How long to wait for cdn.meshulam.co.il before falling back to a redirect */
+    const GROW_SDK_TIMEOUT_MS = 6000;
+
     const els = {};
     let lockedAmount = null;
     let lockedDescription = null;
+    let growInitialised = false;
+    let submitOriginalHtml = '';
+
+    /* ---------- Grow checkout SDK (embedded) ---------- */
+
+    function setSubmitBusy(busy, label) {
+        /* Captured on the way in, so it survives a language switch */
+        if (busy && !els.submit.dataset.busy) {
+            submitOriginalHtml = els.submit.innerHTML;
+            els.submit.dataset.busy = '1';
+        }
+
+        els.submit.disabled = busy;
+        els.submit.style.opacity = busy ? '0.7' : '1';
+
+        if (busy) {
+            els.submit.textContent = label;
+        } else {
+            if (submitOriginalHtml) els.submit.innerHTML = submitOriginalHtml;
+            delete els.submit.dataset.busy;
+        }
+    }
+
+    /* Resolves false when the SDK never showed up - the caller then falls
+       back to the hosted checkout page. */
+    function whenGrowReady() {
+        return new Promise(resolve => {
+            const startedAt = Date.now();
+
+            const check = () => {
+                if (window.growPayment && window.growPayment.renderPaymentOptions) {
+                    if (!growInitialised) {
+                        window.growPayment.init({
+                            environment: Pay.getConfig().growEnvironment === 'DEV' ? 'DEV' : 'PRODUCTION',
+                            version: 1,
+                            events: {
+                                onPaymentStart: () => { },
+                                onSuccess: () => showSuccess(),
+                                onFailure: () => {
+                                    setSubmitBusy(false);
+                                    showError(Pay.t('errPaymentFailed'));
+                                },
+                                onError: () => {
+                                    setSubmitBusy(false);
+                                    showError(Pay.t('errPaymentSystem'));
+                                },
+                                onClose: () => setSubmitBusy(false)
+                            }
+                        });
+                        growInitialised = true;
+                    }
+                    resolve(true);
+                } else if (Date.now() - startedAt > GROW_SDK_TIMEOUT_MS) {
+                    resolve(false);
+                } else {
+                    setTimeout(check, 100);
+                }
+            };
+
+            check();
+        });
+    }
 
     /* ---------- Link parameters ---------- */
 
@@ -68,6 +133,15 @@
         els.invalid.dataset.reason = messageKey;
         els.invalidText.textContent = Pay.t(messageKey);
         els.invalid.hidden = false;
+    }
+
+    function showSuccess() {
+        const amount = currentAmount();
+        els.content.hidden = true;
+        els.successAmount.textContent = Pay.formatAmount(amount) + ' ₪';
+        els.success.hidden = false;
+        trackPurchase(amount);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showError(message) {
@@ -133,6 +207,19 @@
         }
     }
 
+    function trackPurchase(amount) {
+        try {
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'purchase', { currency: 'ILS', value: amount });
+            }
+            if (typeof window.fbq === 'function') {
+                window.fbq('track', 'Purchase', { currency: 'ILS', value: amount });
+            }
+        } catch (err) {
+            /* analytics must never block a payment */
+        }
+    }
+
     /* ---------- Submit ---------- */
 
     async function handleSubmit(e) {
@@ -146,30 +233,35 @@
         }
 
         const amount = currentAmount();
-        const submitBtn = els.submit;
-        const originalHtml = submitBtn.innerHTML;
-
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = '0.7';
-        submitBtn.textContent = Pay.t('redirecting');
+        setSubmitBusy(true, Pay.t('opening'));
 
         try {
-            const { url } = await Pay.createPaymentLink({
-                fullName: els.fullName.value,
-                email: els.email.value,
-                phone: els.phone.value,
-                sum: amount,
-                description: currentDescription(),
-                paymentNumber: els.paymentsCount.value,
-                businessTaxId: els.businessTaxId.value
-            });
+            const [sdkReady, process] = await Promise.all([
+                whenGrowReady(),
+                Pay.createPaymentLink({
+                    fullName: els.fullName.value,
+                    email: els.email.value,
+                    phone: els.phone.value,
+                    sum: amount,
+                    description: currentDescription(),
+                    paymentNumber: els.paymentsCount.value,
+                    businessTaxId: els.businessTaxId.value
+                })
+            ]);
 
             trackCheckoutStart(amount);
-            window.location.href = url;
+
+            if (sdkReady && process.authCode) {
+                /* Stays busy until the widget reports success, failure or close. */
+                window.growPayment.renderPaymentOptions(process.authCode);
+                return;
+            }
+
+            /* The CDN was blocked or slow - fall back to Grow's hosted page. */
+            setSubmitBusy(true, Pay.t('redirecting'));
+            window.location.href = process.url;
         } catch (err) {
-            submitBtn.innerHTML = originalHtml;
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = '1';
+            setSubmitBusy(false);
             showError(err.message || Pay.t('errServer'));
         }
     }
@@ -284,6 +376,8 @@
         els.loading = document.getElementById('payLoading');
         els.invalid = document.getElementById('payInvalid');
         els.invalidText = document.getElementById('payInvalidText');
+        els.success = document.getElementById('paySuccess');
+        els.successAmount = document.getElementById('paySuccessAmount');
 
         Pay.initChrome(() => {
             Pay.fillPaymentsSelect(els.paymentsCount, els.paymentsCount.value);
@@ -307,6 +401,9 @@
         });
 
         els.form.addEventListener('submit', handleSubmit);
+
+        /* Warm the SDK up now so the widget opens instantly on submit */
+        whenGrowReady();
     }
 
     document.addEventListener('DOMContentLoaded', boot);
