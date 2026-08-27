@@ -2889,3 +2889,72 @@ img {
     color: var(--gray-dark);
     font-size: 0.82rem;
 }
+
+/* ---------- Standalone checkout (no site navbar) ---------- */
+.payment-standalone .payment-page {
+    padding: 48px 0 56px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.payment-standalone .payment-container {
+    width: 100%;
+}
+
+.pay-brand {
+    height: 26px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto 18px;
+    opacity: 0.95;
+}
+
+.pay-title i {
+    font-size: 0.75em;
+    color: var(--primary);
+    margin-inline-end: 6px;
+}
+
+.pay-legal {
+    text-align: center;
+    margin-top: 22px;
+    color: var(--gray-dark);
+    font-size: 0.78rem;
+}
+
+/* ---------- Paid state ---------- */
+.pay-state-success i {
+    font-size: 2.6rem;
+    color: var(--primary);
+}
+
+.pay-state-success h2 {
+    color: var(--light);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 16px 0 8px;
+}
+
+.pay-success-amount {
+    font-family: var(--font-en);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    direction: ltr;
+    margin: 4px 0 12px;
+}
+
+.pay-state-success p {
+    color: var(--gray);
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 640px) {
+    .payment-standalone .payment-page {
+        padding: 28px 0 36px;
+        display: block;
+    }
+}

@@ -31,7 +31,16 @@ window.ProAlgoPay = (function () {
             en: 'Something went wrong while creating the payment. Please try again or contact us.'
         },
         redirecting: { he: 'מעבירים אותך לתשלום...', en: 'Redirecting to checkout...' },
+        opening: { he: 'פותח את חלון התשלום...', en: 'Opening the payment window...' },
         creating: { he: 'יוצר קישור...', en: 'Creating link...' },
+        errPaymentFailed: {
+            he: 'התשלום לא אושר. בדקו את פרטי הכרטיס ונסו שוב.',
+            en: 'The payment was declined. Check your card details and try again.'
+        },
+        errPaymentSystem: {
+            he: 'שגיאה במערכת התשלומים. נסו שוב בעוד רגע.',
+            en: 'The payment system returned an error. Please try again in a moment.'
+        },
         onePayment: { he: 'תשלום אחד', en: 'Single payment' },
         nPayments: { he: 'עד {n} תשלומים', en: 'Up to {n} payments' },
         errInvalidLink: {
