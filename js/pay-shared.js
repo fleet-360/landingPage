@@ -41,12 +41,18 @@ window.ProAlgoPay = (function () {
             he: 'שגיאה במערכת התשלומים. נסו שוב בעוד רגע.',
             en: 'The payment system returned an error. Please try again in a moment.'
         },
+        errCheckoutExpired: {
+            he: 'חלון התשלום פג תוקף. לחצו שוב על כפתור התשלום.',
+            en: 'The payment window expired. Press the payment button again.'
+        },
         errCheckoutUnavailable: {
             he: 'לא הצלחנו לפתוח את חלון התשלום. רעננו את הדף ונסו שוב.',
             en: 'We could not open the payment window. Please refresh the page and try again.'
         },
         onePayment: { he: 'תשלום אחד', en: 'Single payment' },
         nPayments: { he: 'עד {n} תשלומים', en: 'Up to {n} payments' },
+        /* The customer is told the number the link fixed, not that he could pick one */
+        nPaymentsFixed: { he: '{n} תשלומים', en: '{n} installments' },
         errInvalidLink: {
             he: 'קישור התשלום אינו תקין. בקשו קישור חדש או צרו איתנו קשר.',
             en: 'This payment link is not valid. Please ask for a new one or contact us.'

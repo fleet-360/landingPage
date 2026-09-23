@@ -2564,6 +2564,20 @@ img {
     background: rgba(24, 24, 24, 0.95);
 }
 
+/* The link fixed the number of installments - shown, never chosen */
+.pay-payments-static {
+    display: flex;
+    align-items: center;
+    height: 54px;
+    padding: 0 16px;
+    background: rgba(24, 24, 24, 0.78);
+    border: 1px dashed #464646;
+    border-radius: 12px;
+    color: var(--light);
+    font-size: 16px;
+    opacity: 0.75;
+}
+
 .pay-field input.is-locked {
     opacity: 0.75;
     cursor: default;
@@ -2741,22 +2755,6 @@ img {
 .pay-share-btn .fa-whatsapp {
     color: #25d366;
     font-size: 1.1rem;
-}
-
-.pay-direct {
-    margin-top: 22px;
-    padding: 16px;
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px dashed rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
-    text-align: center;
-}
-
-.pay-direct-note {
-    color: var(--gray);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    margin-bottom: 12px;
 }
 
 /* ---------- Responsive ---------- */

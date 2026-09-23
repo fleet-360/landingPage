@@ -5,8 +5,7 @@
 
    Produces /payment.html?d=<encrypted token> so the amount and the
    customer details never appear in readable form in the link,
-   plus an optional expiry date. Can also create a direct Grow
-   checkout link when the full customer details are known.
+   plus an optional expiry date.
    ============================================ */
 
 (function () {
@@ -22,11 +21,6 @@
         copy: { he: 'העתק', en: 'Copy' },
         copyFailed: { he: 'ההעתקה נכשלה - סמנו והעתיקו ידנית', en: 'Copy failed - select the text and copy manually' },
         readyLink: { he: 'הקישור מוכן', en: 'Your link is ready' },
-        readyDirect: { he: 'קישור סליקה ישיר מוכן', en: 'Direct checkout link is ready' },
-        needDetails: {
-            he: 'לקישור סליקה ישיר צריך שם מלא, טלפון ואימייל תקינים',
-            en: 'A direct checkout link requires a valid full name, phone and email'
-        },
         whatsappMessage: {
             he: 'שלום {name}, מצורף קישור לתשלום על סך {amount} ש"ח עבור {desc}:\n{url}',
             en: 'Hi {name}, here is your payment link for {amount} ILS for {desc}:\n{url}'
@@ -44,7 +38,6 @@
         metaNoExpiry: { he: 'ללא תאריך תפוגה', en: 'No expiry date' },
         metaLocked: { he: 'הסכום נעול', en: 'amount locked' },
         metaUnlocked: { he: 'הלקוח יכול לשנות את הסכום', en: 'the customer can change the amount' },
-        metaDirect: { he: 'קישור ישיר לעמוד הסליקה של Grow', en: 'Direct link to the Grow checkout page' }
     };
 
     const els = {};
@@ -202,9 +195,7 @@
         return window.location.origin + PAYMENT_PAGE_PATH + '?d=' + token;
     }
 
-    function metaLine(form, isDirect) {
-        if (isDirect) return t('metaDirect');
-
+    function metaLine(form) {
         const validity = form.expiryDays > 0
             ? t('metaExpires', {
                 date: new Date(Date.now() + form.expiryDays * 86400000)
@@ -215,12 +206,12 @@
         return validity + ' · ' + (form.lock ? t('metaLocked') : t('metaUnlocked'));
     }
 
-    function renderResult(url, titleKey, form) {
-        lastResult = { url, titleKey, form };
+    function renderResult(url, form) {
+        lastResult = { url, form };
 
         els.output.value = url;
-        els.resultTitle.textContent = t(titleKey);
-        els.meta.textContent = metaLine(form, titleKey === 'readyDirect');
+        els.resultTitle.textContent = t('readyLink');
+        els.meta.textContent = metaLine(form);
         els.result.hidden = false;
 
         const message = t('whatsappMessage', {
@@ -255,51 +246,9 @@
         els.amount.value = Pay.formatAmount(form.amount);
 
         try {
-            renderResult(await buildLink(form), 'readyLink', form);
+            renderResult(await buildLink(form), form);
         } catch (err) {
             showError(err.message || t('insecureContext'));
-        }
-    }
-
-    async function handleDirectLink() {
-        clearError();
-
-        const form = readForm();
-        const problem = validate(form);
-        if (problem) {
-            showError(problem);
-            return;
-        }
-
-        if (!form.fullName || !Pay.isValidPhone(form.phone) || !Pay.isValidEmail(form.email)) {
-            showError(t('needDetails'));
-            return;
-        }
-
-        lastForm = form;
-        const btn = els.createDirect;
-        const originalHtml = btn.innerHTML;
-        btn.disabled = true;
-        btn.style.opacity = '0.7';
-        btn.textContent = Pay.t('creating');
-
-        try {
-            const { url } = await Pay.createPaymentLink({
-                fullName: form.fullName,
-                email: form.email,
-                phone: form.phone,
-                sum: form.amount,
-                description: form.description,
-                paymentNumber: form.payments,
-                businessTaxId: form.taxId
-            });
-            renderResult(url, 'readyDirect', form);
-        } catch (err) {
-            showError(err.message || Pay.t('errServer'));
-        } finally {
-            btn.innerHTML = originalHtml;
-            btn.disabled = false;
-            btn.style.opacity = '1';
         }
     }
 
@@ -333,7 +282,7 @@
             taxId: 'linkTaxId', lock: 'linkLock', english: 'linkEnglish', error: 'linkError',
             result: 'linkResult', resultTitle: 'linkResultTitle', meta: 'linkMeta', output: 'linkOutput',
             copy: 'copyLink', shareWhatsapp: 'shareWhatsapp', shareEmail: 'shareEmail',
-            openLink: 'openLink', createDirect: 'createDirect',
+            openLink: 'openLink',
             notConfigured: 'linkNotConfigured', notConfiguredText: 'linkNotConfiguredText'
         };
         Object.keys(ids).forEach(key => { els[key] = document.getElementById(ids[key]); });
@@ -346,7 +295,7 @@
 
         Pay.initChrome(() => {
             Pay.fillPaymentsSelect(els.payments, els.payments.value);
-            if (lastResult) renderResult(lastResult.url, lastResult.titleKey, lastResult.form);
+            if (lastResult) renderResult(lastResult.url, lastResult.form);
             if (!els.notConfigured.hidden) els.notConfiguredText.textContent = Pay.t('errNotConfigured');
         });
 
@@ -364,7 +313,6 @@
         els.form.addEventListener('submit', handleSubmit);
         els.form.addEventListener('input', clearError);
         els.copy.addEventListener('click', handleCopy);
-        els.createDirect.addEventListener('click', handleDirectLink);
 
         let session = null;
         try {
