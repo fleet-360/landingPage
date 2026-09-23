@@ -150,6 +150,8 @@
     function showSuccess() {
         const amount = currentAmount();
         els.content.hidden = true;
+        /* "Confirm your details and complete the payment" - not after it is paid */
+        els.subtitle.hidden = true;
         els.successAmount.textContent = Pay.formatAmount(amount) + ' ₪';
         els.success.hidden = false;
         trackPurchase(amount);
@@ -407,6 +409,7 @@
         els.loading = document.getElementById('payLoading');
         els.invalid = document.getElementById('payInvalid');
         els.invalidText = document.getElementById('payInvalidText');
+        els.subtitle = document.querySelector('.pay-subtitle');
         els.success = document.getElementById('paySuccess');
         els.successAmount = document.getElementById('paySuccessAmount');
 
