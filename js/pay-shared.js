@@ -51,8 +51,8 @@ window.ProAlgoPay = (function () {
         },
         onePayment: { he: 'תשלום אחד', en: 'Single payment' },
         nPayments: { he: 'עד {n} תשלומים', en: 'Up to {n} payments' },
-        /* The customer is told the number the link fixed, not that he could pick one */
-        nPaymentsFixed: { he: '{n} תשלומים', en: '{n} installments' },
+        /* The customer picks an exact number, within the ceiling the link set */
+        nPaymentsExact: { he: '{n} תשלומים', en: '{n} installments' },
         errInvalidLink: {
             he: 'קישור התשלום אינו תקין. בקשו קישור חדש או צרו איתנו קשר.',
             en: 'This payment link is not valid. Please ask for a new one or contact us.'
@@ -248,18 +248,23 @@ window.ProAlgoPay = (function () {
         if (typeof onLangChange === 'function') onLangChange(lang);
     }
 
-    /* Fills a <select> with 1..MAX_PAYMENTS installment options. */
-    function fillPaymentsSelect(select, selected) {
+    /* Fills a <select> with 1..max installment options.
+       upTo labels them as a ceiling ("up to 3 payments") - what the link
+       generator picks; the customer picks an exact number instead. */
+    function fillPaymentsSelect(select, selected, { max = MAX_PAYMENTS, upTo = false } = {}) {
         if (!select) return;
+        const top = Math.min(Math.max(Number(max) || 1, 1), MAX_PAYMENTS);
         const value = Number(selected) || Number(select.value) || 1;
         select.innerHTML = '';
-        for (let i = 1; i <= MAX_PAYMENTS; i++) {
+        for (let i = 1; i <= top; i++) {
             const option = document.createElement('option');
             option.value = String(i);
-            option.textContent = i === 1 ? t('onePayment') : t('nPayments', { n: i });
+            option.textContent = i === 1
+                ? t('onePayment')
+                : t(upTo ? 'nPayments' : 'nPaymentsExact', { n: i });
             select.appendChild(option);
         }
-        select.value = String(Math.min(Math.max(value, 1), MAX_PAYMENTS));
+        select.value = String(Math.min(Math.max(value, 1), top));
     }
 
     return {

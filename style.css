@@ -2469,10 +2469,7 @@ img {
     font-size: clamp(1.8rem, 5vw, 2.4rem);
     font-weight: 800;
     line-height: 1;
-    background: var(--pay-grad-deep);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--pay-navy);
 }
 
 .pay-amount-input input {
@@ -2580,19 +2577,6 @@ img {
 .pay-field select:focus {
     border-color: var(--pay-acc);
     box-shadow: 0 0 0 3px rgba(90, 85, 214, 0.15);
-}
-
-/* The link fixed the number of installments - shown, never chosen */
-.pay-payments-static {
-    display: flex;
-    align-items: center;
-    height: 54px;
-    padding: 0 16px;
-    background: var(--pay-bg);
-    border: 1px dashed #c9cfda;
-    border-radius: 12px;
-    color: var(--pay-ink);
-    font-size: 16px;
 }
 
 .pay-field input.is-locked {
@@ -2987,16 +2971,14 @@ img {
     margin: 16px 0 8px;
 }
 
-.pay-success-amount {
+/* Beats .pay-state-success p, which would otherwise grey it out */
+.pay-state-success .pay-success-amount {
     font-family: var(--font-en);
     font-size: 2rem;
     font-weight: 800;
     direction: ltr;
     margin: 4px 0 12px;
-    background: var(--pay-grad-deep);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--pay-navy);
 }
 
 .pay-state-success p {

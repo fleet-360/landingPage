@@ -23,7 +23,7 @@
     const els = {};
     let lockedAmount = null;
     let lockedDescription = null;
-    let lockedPayments = 1;
+    let maxPayments = 1;
     let growInitialised = false;
     let submitOriginalHtml = '';
 
@@ -316,21 +316,16 @@
             }
         }
 
-        Pay.fillPaymentsSelect(els.paymentsCount, params.payments);
-        lockedPayments = Number(params.payments) || 1;
-        renderPayments();
+        maxPayments = Number(params.payments) || 1;
+        renderPayments(1);
     }
 
-    /* The customer never picks the number of installments: the link fixed it.
-       One payment is not worth a line of its own, so the field goes away. */
-    function renderPayments() {
-        els.paymentsField.hidden = lockedPayments <= 1;
-        if (els.paymentsField.hidden) return;
-
-        els.paymentsCount.hidden = true;
-        els.paymentsStatic.textContent = Pay.t('nPaymentsFixed', { n: lockedPayments });
-        els.paymentsStatic.hidden = false;
-        els.paymentsField.classList.add('is-highlighted');
+    /* The link sets a ceiling, the customer picks anything up to it and
+       starts on a single payment. No ceiling, no choice, no field. */
+    function renderPayments(selected) {
+        /* Filled even when hidden, so the submit always reads a real value */
+        Pay.fillPaymentsSelect(els.paymentsCount, selected, { max: maxPayments });
+        els.paymentsField.hidden = maxPayments <= 1;
     }
 
     /* Only reachable when the link left the amount editable. */
@@ -401,7 +396,6 @@
         els.businessTaxId = document.getElementById('businessTaxId');
         els.paymentsCount = document.getElementById('paymentsCount');
         els.paymentsField = document.getElementById('paymentsField');
-        els.paymentsStatic = document.getElementById('paymentsStatic');
         els.error = document.getElementById('payError');
         els.submit = document.getElementById('paySubmit');
         els.form = document.getElementById('paymentForm');
@@ -414,8 +408,7 @@
         els.successAmount = document.getElementById('paySuccessAmount');
 
         Pay.initChrome(() => {
-            Pay.fillPaymentsSelect(els.paymentsCount, els.paymentsCount.value);
-            renderPayments();
+            renderPayments(els.paymentsCount.value);
             syncDefaultDescription();
             if (!els.invalid.hidden) els.invalidText.textContent = Pay.t(els.invalid.dataset.reason || 'errInvalidLink');
         });
