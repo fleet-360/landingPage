@@ -294,7 +294,7 @@
         const config = Pay.getConfig();
 
         Pay.initChrome(() => {
-            Pay.fillPaymentsSelect(els.payments, els.payments.value);
+            Pay.fillPaymentsSelect(els.payments, els.payments.value, { upTo: true });
             if (lastResult) renderResult(lastResult.url, lastResult.form);
             if (!els.notConfigured.hidden) els.notConfiguredText.textContent = Pay.t('errNotConfigured');
         });
@@ -305,7 +305,7 @@
             return;
         }
 
-        Pay.fillPaymentsSelect(els.payments, 1);
+        Pay.fillPaymentsSelect(els.payments, 1, { upTo: true });
         els.description.value = Pay.t('defaultDescription');
 
         els.gate.addEventListener('submit', handleGateSubmit);
