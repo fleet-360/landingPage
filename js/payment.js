@@ -23,6 +23,7 @@
     const els = {};
     let lockedAmount = null;
     let lockedDescription = null;
+    let lockedPayments = 1;
     let growInitialised = false;
     let submitOriginalHtml = '';
 
@@ -70,7 +71,16 @@
                                     setSubmitBusy(false);
                                     showError(Pay.t('errPaymentSystem'));
                                 },
-                                onClose: () => setSubmitBusy(false)
+                                onTimeout: () => {
+                                    setSubmitBusy(false);
+                                    showError(Pay.t('errCheckoutExpired'));
+                                },
+                                /* The SDK has no onClose: closing the widget arrives
+                                   as onWalletChange('close'). Without this the submit
+                                   button stays disabled and the page looks frozen. */
+                                onWalletChange: (state) => {
+                                    if (state === 'close') setSubmitBusy(false);
+                                }
                             }
                         });
                         growInitialised = true;
@@ -140,6 +150,8 @@
     function showSuccess() {
         const amount = currentAmount();
         els.content.hidden = true;
+        /* "Confirm your details and complete the payment" - not after it is paid */
+        els.subtitle.hidden = true;
         els.successAmount.textContent = Pay.formatAmount(amount) + ' ₪';
         els.success.hidden = false;
         trackPurchase(amount);
@@ -305,9 +317,20 @@
         }
 
         Pay.fillPaymentsSelect(els.paymentsCount, params.payments);
-        if (Number(params.payments) > 1) {
-            els.paymentsField.classList.add('is-highlighted');
-        }
+        lockedPayments = Number(params.payments) || 1;
+        renderPayments();
+    }
+
+    /* The customer never picks the number of installments: the link fixed it.
+       One payment is not worth a line of its own, so the field goes away. */
+    function renderPayments() {
+        els.paymentsField.hidden = lockedPayments <= 1;
+        if (els.paymentsField.hidden) return;
+
+        els.paymentsCount.hidden = true;
+        els.paymentsStatic.textContent = Pay.t('nPaymentsFixed', { n: lockedPayments });
+        els.paymentsStatic.hidden = false;
+        els.paymentsField.classList.add('is-highlighted');
     }
 
     /* Only reachable when the link left the amount editable. */
@@ -378,6 +401,7 @@
         els.businessTaxId = document.getElementById('businessTaxId');
         els.paymentsCount = document.getElementById('paymentsCount');
         els.paymentsField = document.getElementById('paymentsField');
+        els.paymentsStatic = document.getElementById('paymentsStatic');
         els.error = document.getElementById('payError');
         els.submit = document.getElementById('paySubmit');
         els.form = document.getElementById('paymentForm');
@@ -385,11 +409,13 @@
         els.loading = document.getElementById('payLoading');
         els.invalid = document.getElementById('payInvalid');
         els.invalidText = document.getElementById('payInvalidText');
+        els.subtitle = document.querySelector('.pay-subtitle');
         els.success = document.getElementById('paySuccess');
         els.successAmount = document.getElementById('paySuccessAmount');
 
         Pay.initChrome(() => {
             Pay.fillPaymentsSelect(els.paymentsCount, els.paymentsCount.value);
+            renderPayments();
             syncDefaultDescription();
             if (!els.invalid.hidden) els.invalidText.textContent = Pay.t(els.invalid.dataset.reason || 'errInvalidLink');
         });

@@ -59,7 +59,11 @@
 
             <div class="payment-card">
                 <div class="pay-head">
-                    <img src="/images/logo/all-blue-logo.png" alt="Pro Algorithm" class="pay-brand">
+                    <picture>
+                        <source srcset="/images/logo/all-dark-logo.webp" type="image/webp">
+                        <img src="/images/logo/all-dark-logo.png" alt="Pro Algorithm" class="pay-brand" width="2000"
+                            height="177">
+                    </picture>
                     <h1 class="pay-title" data-he="<i class='fas fa-lock'></i> תשלום מאובטח"
                         data-en="<i class='fas fa-lock'></i> Secure Payment"><i class="fas fa-lock"></i> תשלום מאובטח
                     </h1>
@@ -142,6 +146,7 @@
                             <label for="paymentsCount" data-he="מספר תשלומים" data-en="Number of installments">מספר
                                 תשלומים</label>
                             <select id="paymentsCount"></select>
+                            <p class="pay-payments-static" id="paymentsStatic" hidden></p>
                         </div>
 
                         <div class="pay-error" id="payError" hidden></div>
