@@ -205,6 +205,7 @@
         if (els.fullName.value.trim().length < 2) return Pay.t('errName');
         if (!Pay.isValidPhone(els.phone.value)) return Pay.t('errPhone');
         if (!Pay.isValidEmail(els.email.value)) return Pay.t('errEmail');
+        if (!Pay.isValidTaxId(els.businessTaxId.value)) return Pay.t('errTaxId');
         return null;
     }
 
@@ -292,9 +293,14 @@
             Pay.setLang(params.lang);
         }
 
+        /* A description set by the link is never the customer's to change,
+           even when the amount is left editable. */
         if (params.description) {
+            lockedDescription = params.description;
             els.description.value = params.description;
             els.description.dataset.isDefault = '0';
+            els.description.readOnly = true;
+            els.description.classList.add('is-locked');
         }
 
         if (params.fullName) els.fullName.value = params.fullName;
@@ -308,11 +314,6 @@
             if (!params.editable) {
                 lockedAmount = amount;
                 renderLockedAmount();
-                if (params.description) {
-                    lockedDescription = params.description;
-                    els.description.readOnly = true;
-                    els.description.classList.add('is-locked');
-                }
             }
         }
 

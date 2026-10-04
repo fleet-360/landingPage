@@ -25,6 +25,7 @@ window.ProAlgoPay = (function () {
         errName: { he: 'יש להזין שם מלא', en: 'Please enter a full name' },
         errPhone: { he: 'יש להזין מספר טלפון נייד תקין', en: 'Please enter a valid mobile phone number' },
         errEmail: { he: 'יש להזין כתובת אימייל תקינה', en: 'Please enter a valid email address' },
+        errTaxId: { he: 'יש להזין ח.פ / ע.מ תקין', en: 'Please enter a valid business tax ID' },
         errDescription: { he: 'יש להזין תיאור לתשלום', en: 'Please enter a payment description' },
         errServer: {
             he: 'אירעה שגיאה ביצירת התשלום. נסו שוב או צרו איתנו קשר.',
@@ -131,6 +132,11 @@ window.ProAlgoPay = (function () {
 
     function isValidEmail(raw) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(raw || '').trim());
+    }
+
+    /* ח.פ / ע.מ: 9 digits, or 8 when a leading zero was dropped */
+    function isValidTaxId(raw) {
+        return /^\d{8,9}$/.test(String(raw || '').replace(/[\s-]/g, ''));
     }
 
     /* ---------- API ---------- */
@@ -282,6 +288,7 @@ window.ProAlgoPay = (function () {
         normalizePhone,
         isValidPhone,
         isValidEmail,
+        isValidTaxId,
         createPaymentLink,
         applyLang,
         initChrome,
